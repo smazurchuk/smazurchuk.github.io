@@ -5,8 +5,8 @@ permalink: /about/
 ---
 
 
-<div class="box"> <iframe src="sideproject/fourier.html"  width="50%" height="420" style="border:none" align="left"></iframe></div>											
-<div class="box"> <iframe src="sideproject/waveform.html" width="50%" height="420" style="border:none" align="right"></iframe></div>
+<div class="box"> <iframe src="sideproject/fourier.html"  width="800" height="420" style="border:none"></iframe></div>											
+<div class="box"> <iframe src="sideproject/waveform.html" width="800" height="420" style="border:none"></iframe></div>
 
 
 

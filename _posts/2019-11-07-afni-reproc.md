@@ -8,7 +8,7 @@ date: 2019-11-07
 permalink: /posts/afni_reproc
 ---
 # {{ page.title }}
-I don't really know what this does, so it is just a first post
+The SOE data was processed with the intent of doing RSA analysis where the scans were aligned to anatomical space. However, I thought it might be a fun project to look at the functional connectivity of the patients that are already processed. The first step to accomplish this is re-processing the SOE data into MNI space for group analysis!
 
 # AFNI Notes
 Shana Terai wrote some scripts for processing the SOE data. These are very well documented, and well written. They should be looked at prior to this script, as these are based off of her scripts. I've written this largely for my own documentation.
@@ -16,11 +16,11 @@ Shana Terai wrote some scripts for processing the SOE data. These are very well 
 # Re-Processing
 Since the patients have already been processed once through Shana's scripts, I can re-process her files with an updated script.
 
-Need to re-run the proc_py files and have alignment into MNI space. The help function is great, and jobs need to be queued one at a time. Once in the RCC, jobs should be run with the command
+Need to re-run the proc_py files and have alignment into MNI space. Shana's help function is great, and patients need to be queued one at a time. Once in the RCC, jobs should be run with the command
 ```
 queue.SOE.ap.sp [ -s SUBJECT# ] [ -d SESSION# ] [ -r SEMAP#]
 ```
-This command then submits the proper jobs using the `SOE.ap.bySE` script which does all the real work. This script can be edited for the SOE data to MNI space by editing the `afni_proc.py` script call. 
+Note that the -d and -r options should be left blank so that all scans are reprocessed. This command then submits the proper jobs using the `SOE.ap.bySE` script which does all the real work. This script can be edited for the SOE data to MNI space by editing the `afni_proc.py` script call. 
 Here is the updated call.
 
 ```
@@ -38,10 +38,9 @@ afni_proc.py -subj_id SOE_${subj}_${sesh}_SEmap${SEn}                   \
         -align_opts_aea -giant_move                                     \
         -align_epi_strip_method 3dSkullStrip
 ```
-The only change I made was adding the three tlrc commands which were taken from the AFNI proc_py documentation. The only other editing that I made to Shana's script was chanigng the output_dir variable in here scripts. 
+The only change I made was adding the three tlrc commands which were taken from the AFNI proc_py documentation. The only other editing that I made to Shana's script was chanigng the output_dir variable to a directory under my username.
 
-
-
+The next steps are to re-process the patients and use nilearn for some ICA!
 
 
 ## Notes

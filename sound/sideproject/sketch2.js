@@ -8,14 +8,13 @@ function setup() {
    mic.start();
    fft = new p5.FFT();
    fft.setInput(mic);
-      text = createDiv('This is where I will put more options');
-   text.position(50, 80);
+   //text = createDiv('This is where I will put more options');
+   //text.position(50, 80);
    //pauseF = document.getElementById("pause");
 }
 
 function draw() {
-     background(204, 229, 255);
-
+   background(204, 229, 255);
    var waveform = fft.waveform();
   // if pauseF == 1
        beginShape();

@@ -29,7 +29,7 @@ afni_proc.py -subj_id SOE_${subj}_${sesh}_SEmap${SEn}                   \
         -copy_anat SOE_${subj}_T1w_acpc_dc_restore_brain_1mm+orig       \
         -blip_forward_dset SOE${subj}_SEmap${SEn}_AP.nii.gz             \
         -blip_reverse_dset SOE${subj}_SEmap${SEn}_PA.nii.gz             \
-        -blocks despike tshift align volreg  mask scale                 \
+        -blocks despike tshift align tlrc volreg  mask scale                 \
         -volreg_align_e2a                                               \
         -tlrc_base MNI152_T1_2009c+tlrc                                 \
         -tlrc_NL_warp                                                   \

@@ -18,10 +18,10 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Language Imaging Lab
+title: Noether's Nonsense
 email: smazurchuk@mcw.edu
 description: >- # this means to ignore newlines until "baseurl:"
-  A site to document work and procedures in the lab
+  A site to document work flows, ideas, and musings
  
   
 baseurl: "" # the subpath of your site, e.g. /blog

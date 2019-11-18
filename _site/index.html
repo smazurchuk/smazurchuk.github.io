@@ -16,7 +16,41 @@
 {"@type":"WebSite","headline":"Noether’s Nonsense","url":"http://localhost:4000/","name":"Noether’s Nonsense","description":"A site to document work flows, ideas, and musings","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Noether's Nonsense" /></head>
-<body><header class="site-header" role="banner">
+<body>
+        <div id="particles-js"></div>
+        <div class="count-particles">
+            <span class="js-count-particles">--</span> particles
+          </div>
+        
+          <!-- particles.js container -->
+          <!-- <div id="particles-js"></div> -->
+        
+          <!-- scripts -->
+          <script src="/assets/js/particles.js"></script>
+          <script src="/assets/js/app.js"></script>
+        
+          <!-- stats.js -->
+          <script src="/assets/js/lib/stats.js"></script>
+          <script>
+            var count_particles, stats, update;
+            stats = new Stats;
+            stats.setMode(0);
+            stats.domElement.style.position = 'absolute';
+            stats.domElement.style.left = '0px';
+            stats.domElement.style.top = '0px';      
+            
+            document.body.appendChild(stats.domElement);
+            count_particles = document.querySelector('.js-count-particles');
+            update = function() {
+              stats.begin();
+              stats.end();
+              if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) {
+                count_particles.innerText = window.pJSDom[0].pJS.particles.array.length;
+              }
+              requestAnimationFrame(update);
+            };
+            requestAnimationFrame(update);
+          </script><header class="site-header" role="banner">
 
   <div class="wrapper"><a class="site-title" rel="author" href="/">Noether&#39;s Nonsense</a><nav class="site-nav">
         <input type="checkbox" id="nav-trigger" class="nav-trigger" />

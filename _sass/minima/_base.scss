@@ -314,7 +314,9 @@ table {
   //z-index: -1;
 }
 #homeBack{
-  position: fixed; //relative; //absolute; This makes the selection area smaller
+  position: relative; //absolute; This makes the selection area smaller
   z-index: 1;
+  background-color: #000000b6;
+  display: inline-block;
   // border: 3px solid #73AD21;
 }

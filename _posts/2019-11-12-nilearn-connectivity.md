@@ -3,11 +3,9 @@
 # To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 
 layout: post
-title: SOE Connectivity Analysis 2
+title: SOE Connectivity Analysis
 date: 2019-11-12
 ---
-# {{ page.title }}
-
 # SOE Connectivity Exploration
 First, prior to being imported in this script, all the SOE data was pre-processed using AFNI. The EPI scans were all transformed into MNI space, and then I converted these to nifti format and placed them in the directory 'tmp'. For exploratory purposes, there are only 4 patients included with 72 runs across them. 
 

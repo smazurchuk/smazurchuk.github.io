@@ -3,11 +3,10 @@
 # To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 
 layout: post
-title: Re-Process SOE
+title: SOE Data to MNI Space
 date: 2019-11-07
 permalink: /posts/afni_reproc
 ---
-# {{ page.title }}
 The SOE data was processed with the intent of doing RSA analysis where the scans were aligned to anatomical space. However, I thought it might be a fun project to look at the functional connectivity of the patients that are already processed. The first step to accomplish this is re-processing the SOE data into MNI space for group analysis!
 
 # AFNI Notes

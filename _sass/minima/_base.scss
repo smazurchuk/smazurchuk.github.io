@@ -111,7 +111,7 @@ a {
   }
 
   &:hover {
-    color: $text-color;
+    color: complement($background-color);
     text-decoration: underline;
   }
 
@@ -318,5 +318,6 @@ table {
   z-index: 1;
   background-color: #000000b6;
   display: inline-block;
+  color: #f8f8f8;
   // border: 3px solid #73AD21;
 }

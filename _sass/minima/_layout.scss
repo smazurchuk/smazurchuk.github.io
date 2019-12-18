@@ -2,7 +2,7 @@
  * Site header
  */
 .site-header {
-  border-top: 5px solid $grey-color-dark;
+  //border-top: 5px solid $grey-color-dark;
   border-bottom: 1px solid $grey-color-light;
   min-height: $spacing-unit * 1.865;
 
@@ -22,6 +22,15 @@
   &:visited {
     color: $grey-color-dark;
   }
+}
+.site-title-home {
+  @include relative-font-size(1.625);
+  font-weight: 300;
+  line-height: $base-line-height * $base-font-size * 2.25;
+  letter-spacing: -1px;
+  margin-bottom: 0;
+  float: left;
+  color: #f3f3f3; 
 }
 
 .site-nav {
@@ -45,7 +54,15 @@
       margin-right: 20px;
     }
   }
+  .page-link-home {
+    color: #f3f3f3;
+    line-height: $base-line-height;
 
+    // Gaps between nav items, but not on the last one
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+  }
   @include media-query($on-palm) {
     position: absolute;
     top: 9px;
@@ -112,6 +129,12 @@
 }
 
 .footer-heading {
+  @include relative-font-size(1.125);
+  margin-bottom: $spacing-unit / 2;
+}
+
+.footer-heading-home {
+  color: #f3f3f3;
   @include relative-font-size(1.125);
   margin-bottom: $spacing-unit / 2;
 }
@@ -198,14 +221,27 @@
   }
 }
 
+.post-list-home {
+  margin-left: 0;
+  list-style: none;
+  color: #f3f3f3;
+
+  > li {
+    margin-bottom: $spacing-unit;
+    color: #f3f3f3;
+  }
+}
+
 .post-meta {
   font-size: $small-font-size;
-  color: $grey-color;
+  color: #7e8afc;
+  //color: $grey-color;
 }
 
 .post-link {
   display: block;
   @include relative-font-size(1.5);
+  color: #f0ebeb;
 }
 
 

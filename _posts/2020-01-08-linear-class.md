@@ -5,8 +5,9 @@ date: 2020-01-08
 ---
 This post is to detail the similarities between linear regression and linear classification techniques. First, we will consider some data for linear regression
 
-Consider some data:
+<img style="float: right;" src="/assets/scat1.svg">
 
+Consider some data:
 | X1 | X2 | Category |
 |----|---|---------|
 | 0.11  | 0.96 | 1        |
@@ -25,7 +26,7 @@ Consider some data:
 | 3.68  | 3.79 | 2        |
 | 0.86  | 1.48  | 1        |
 
-![scatt](/assets/scat1.svg)
+
 
 Above, the regression can be thought of as finding some w's such that:
 

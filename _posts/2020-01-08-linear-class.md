@@ -7,8 +7,8 @@ This post is to detail the similarities between linear regression and linear cla
 
 Consider some data:
 
-| X1                 | X2                | Category |
-|--------------------|-------------------|----------|
+| X1 | X2 | Category |
+|----|---|---------|
 | 0.11  | 0.96 | 1        |
 | 0.2  | 0.57 |  1       |
 | 3.29   | 4.22  | 2        |
@@ -25,11 +25,14 @@ Consider some data:
 | 3.68  | 3.79 | 2        |
 | 0.86  | 1.48  | 1        |
 
-![scatt]("../assets/scat1.svg")
+![scatt](/assets/scat1.svg)
 
 Above, the regression can be thought of as finding some w's such that:
+
 $$ X2 = w_1*X1 + w_0 $$
+
 From here, one can a closed form solution of the form:
+
 $$ w* = (X^TX)^{-1}X^Ty $$
 
 In matlab, the above results can be found through:
@@ -43,7 +46,7 @@ scatter(X(:,1),X(:,2),[],c,'filled')
 plot(X(:,1),w'*d')
 hold off
 ```
-![scattfit]("../assets/scat_wfit.svg")
+![scattfit](/assets/scat_wfit.svg)
 
 ## Classification
 In order to change the above regression problem into a classification problem, we can simply use the columns X1 and X2 to regress out a third column (Category). After this, we can simply set a threshold (naivly, maybe 1.6) to classify! The code to do this in matlab is (note: I know the inline 'for' loop is terrible to read):
@@ -54,10 +57,10 @@ d2 = [X, ones(15,1)];
 w2 = inv(d2'*d2)*d2'*g';
 g_hat = w2'*d2';
 colors = zeros(15,3);
-for i=1:15 if g_hat(i)<1.6 colors(i,:)=r; else colors(i,:)=b; end; end 
+for i=1:15 if g_hat(i)<1.6 colors(i,:)=b; else colors(i,:)=r; end; end 
 scatter(X(:,1),X(:,2),[],colors,'filled')
 ```
-![scatt]("../assets/scat2.svg")
+![scatt](/assets/scat2.svg)
 
 ## Conclusion
 In short, as you expect, for linearly seperable data, we can think of linear regression and linear classification as almost identical processes!

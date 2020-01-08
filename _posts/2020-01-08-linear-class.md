@@ -6,6 +6,7 @@ date: 2020-01-08
 This post is to detail the similarities between linear regression and linear classification techniques. First, we will consider some data for linear regression
 
 Consider some data:
+
 | X1 | X2 | Category |
 |----|---|---------|
 | 0.11  | 0.96 | 1        |

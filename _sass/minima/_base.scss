@@ -107,7 +107,7 @@ a {
   text-decoration: none;
 
   &:visited {
-    color: darken($brand-color, 15%);
+     //color: darken($brand-color, 15%);
   }
 
   &:hover {
@@ -123,6 +123,7 @@ a {
     }
   }
 }
+
 
 
 /**
@@ -151,7 +152,7 @@ code {
   @include relative-font-size(0.9375);
   border: 1px solid rgba(255, 255, 255, 0); // $grey-color-light;
   border-radius: 3px;
-  background-color: rgba(252, 252, 252, 0);
+  background-color: $code-background; //rgba(252, 252, 252, 0);
   color: #f8f8f8;
 }
 

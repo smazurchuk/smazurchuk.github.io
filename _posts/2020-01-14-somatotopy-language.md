@@ -10,7 +10,7 @@ Somatotopy is known to exist all throughout the brain. From the visual cortex to
 
 Examples of visual somatopy include polar angle:
 
- [![](/assets/phase_gif.gif)]()
+ ![](/assets/phase_gif.gif)]
 
 Another well studied example is in the audutory cortex where there is tonotopy. The below gif shows a down-sweep of tones.
 

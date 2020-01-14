@@ -6,11 +6,14 @@ date: 2020-01-14
 I thought I might make a post of an idea that has been circulating in my head this past week.
 
 # Background
-Somatotopy is known to exist all throughout the brain. From the visual cortex to the humunculus. It is a general theme that neurons close together in the cortex tend to represent similar things. 
+Somatotopy is known to exist throughout many regions of the brain. From the visual cortex to the humunculus in the motor gyrus, it is a general theme that neurons close together in the cortex tend to represent similar things. For a more formal definition of somatopy, we can define it as:
 
-Examples of visual somatopy include polar angle:
+> Somatotopy is the point-for-point correspondence of an area of the body to a specific point on the central nervous system [1]
+
+Practically speaking, this results in retinotopic, tonotopic, and sensory maps, sown below:
 
  ![](/assets/phase_gif.gif)
+ *This is an attempt at a caption*
 
 Another well studied example is in the audutory cortex where there is tonotopy. The below gif shows a down-sweep of tones.
 
@@ -48,3 +51,6 @@ for vol in volnames:
 allVecs = np.concatenate(wordVecs,axis=0)
 ```
 The result of this is a 34,000 dimensional vector for **each word** in **each patient** which gives us a data matrix of **[7,000 by 34,000]**. This can then be analyzed using dimensionality reduction techniques such as PCA, tSNE, and Diffusion mapping. Unfortunately, after running these analysis, there was no 'naturual' ordering to the words, so for the moment, this is where my analysis ends. 
+
+
+[1]: Saladin, Kenneth (2012). Anatomy and Physiology. New York: McGraw Hill. pp. 541, 542.

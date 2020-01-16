@@ -1,35 +1,43 @@
 ---
 layout: post
-title: The Somatopy of Language
+title: The 'Topy' of Language
 date: 2020-01-14
 ---
-I thought I might make a post of an idea that has been circulating in my head this past week.
+I thought I might make a post of an idea that has been circulating in my head this past week. The idea centers on extending what somatopy, retinotopy, and tonotopy imply for concept representation. 
 
-# Background
-Somatotopy is known to exist throughout many regions of the brain. From the visual cortex to the humunculus in the motor gyrus, it is a general theme that neurons close together in the cortex tend to represent similar things. For a more formal definition of somatopy, we can define it as:
+## Background
+Somatotopy is known to exist throughout many regions of the brain. Classically, we know about the humunculus in the motor gyrus, but it is a much more general theme that neurons close together in the cortex tend to represent similar things. For a more formal definition of somatotopy, we can define it as:
 
 > Somatotopy is the point-for-point correspondence of an area of the body to a specific point on the central nervous system [^1]
 
-Practically speaking, this results in retinotopic, tonotopic, and sensory maps, shown below:
+Practically speaking, this generalizes to the retina and cochlea resulting in respective retinotopic and tonotopic maps. These maps can be explored through functional imaging as shown in the figures below:
 
 ![](/assets/phase_gif.gif)
-<p align="center"><em>Polar angle across the visual cortex </em></p>
-
-
-Another well studied example is in the audutory cortex where there is tonotopy. The below gif shows a down-sweep of tones.
+<p align="center"><em>Polar angle represented across the visual cortex</em></p>
 
 ![](/assets/down_sweep.gif)
+<p align="center"><em> Demonstrates a down-sweep of tones </em></p>
 
-Both of these examples are taken from the website of [Marty Sereno](http://www.cogsci.ucsd.edu/~sereno/). A general question is: is there tonopy in the language system? If so, how might we go about exploring it?
+Both of these examples are taken from the website of [Marty Sereno](http://www.cogsci.ucsd.edu/~sereno/). A general question is: 
+
+> Are there parameters which vary continuously vary in the language system?
+
+If there are, how might we go about finding and exploring them?
+
+## General Approach
+What is described above can also be thought of as a degree for the system. In the visual cortex, the two largest of degrees of freedom would (hopefully) be *eccentricity* and *angle*. The general problem of finding degrees of freedom for a system corresponds to dimensionality reduction. In most cases, we are interested in non-linear dimensionality reduction, for which many algorithms exist. One of the most common techniques is known as diffusion mapping, so we might try to recover eccentricity and angle in the visual cortex using this method.
+
+# Dataset
+
 
 ## Language System
-For a general idea of which parts of the brain are involved in word represention, we can look at computer-generated meta-analysis found at [NeuroSynth](https://neurosynth.org/analyses/terms/language/).
+For a general idea of which parts of the brain are involved in concept representation, we can look at computer-generated meta-analysis found at [NeuroSynth](https://neurosynth.org/analyses/terms/language/).
 
 [![](/assets/lang_neurosynth.png)](https://neurosynth.org/analyses/terms/language/)
 
-We can use this mask to select voxels of interest in MNI space. These b-values then make vectors for which we can look as the question:
+We can use this mask to select voxels of interest in MNI space. This list of masked $$\beta$$-values can then be thought of as a vector for which we can look as the question:
 
-> Are there any continous degrees of freedom exhibited by the system?
+> Are there any continuous degrees of freedom exhibited by the collection of vectors?
 
 To do this in python, first, all the t-scores were converted into MNI space, and then the neurosynth mask was scaled and applied to the voxels.
 

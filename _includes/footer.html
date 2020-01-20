@@ -18,15 +18,18 @@
             {%- if site.email -%}
             <li><a class="u-email" href="mailto:{{ site.email }}">{{ site.email }}</a></li>
             {%- endif -%}
+
         </ul>
       </div>
 
-      <div class="footer-col footer-col-2">
-        {%- include social.html -%}
+      <div class="footer-col footer-col-2-new">
+          <img src="/favicon.png" width="150" style="max-width: none;">
       </div>
 
       <div class="footer-col footer-col-3">
         <p>{{- site.description | escape -}}</p>
+        {%- include social.html -%}
+
       </div>
     </div>
 

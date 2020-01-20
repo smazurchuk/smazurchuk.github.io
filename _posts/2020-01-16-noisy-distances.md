@@ -44,12 +44,12 @@ Here, I used Matlab to get a better feel for how these metrics respond to noise.
 While there is a clear difference between some of the distance metrics, we might wonder if this makes a difference? To do this, we can perform a mantel test on dissimilarity matrices produced from pure signal, and in the presence of noise.
 
 [ ![](/assets/mantel_with_noise.svg) ](/assets/mantel_with_noise.svg)
-<p align="center"><em> Mantel test in the presence of noise </em></p>
+<p align="center"><em> Mantel test in the presence of noise. It is important to note that there are TWICE as many measurements that go into the cross-validated distance metrics as compared to the other distances </em></p>
 
 We can see noise seperates out the metrics. We see that the euclidean distance over-estimates distances in the presence of noise, it strongly outperforms pearson correlation. Standardized euclidean happens to give identical results as cosine for our particular toy data. We also see that for our purposes, general mahalanobis performs the same as euclidean or cosine.
 
 A matlab script which will generate these two figures can be found here:
 
-<https://github.com/smazurchuk/general/blob/master/dist_analysis.m>
+</assets/dist_analysis.m>
 
 

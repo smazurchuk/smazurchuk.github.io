@@ -50,6 +50,5 @@ We can see noise seperates out the metrics. We see that the euclidean distance o
 
 A matlab script which will generate these two figures can be found here:
 
-</assets/dist_analysis.m>
-
+[Distance Analysis](https://github.com/smazurchuk/smazurchuk.github.io/blob/master/assets/dist_analysis.m)
 

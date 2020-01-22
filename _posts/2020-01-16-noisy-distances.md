@@ -9,8 +9,9 @@ There are many ways to calculate 'Distances' between two vectors. Some of the mo
 
 ## Distance Metrics
 
-Talk about metrics here
+Starting broadly, in mathematics a *metric* is a function that defines a distance (~mapping to the reals) between each pair of elements of a set which meets 4 conditions. The details of this are outside the scope of this post, but it is worth pointing out that the metrics of most common study are of a bilinear form and are called [*Metric Tensors*](https://en.wikipedia.org/wiki/Metric_tensor). This means that the metric follows a general form of:
 
+$$ B(\bf{v},\bf{w}) = x^{T}Ay $$
 
 # Cross-Validated Mahalanobis
 The central idea that underlies cross-validated mahalanobis is that you have **2 estimates** of the difference between the vectors. I wrote a matlab script to calculate the cross-validated mahalanobis distance between points in the presence of noise.

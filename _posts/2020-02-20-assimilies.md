@@ -5,18 +5,23 @@ date: 2020-02-20
 ---
 When I first learned about the ability of distributionally derived word representations to complete analogies I was very surprised. I thought, "surely we are on the cusp of deeply understanding language". I think that sometimes we get so used to common knowledge that it looses some of its wonder. Why should distributional models perform well at analogies? Shouldn't analogies be a generally difficult task which require deep understanding? Surely completing analogies requires at least as much semantic information (if not more) as assigning pronouns to their proper referent?
 
-Of course, the field of linguistics has recognized the somewhat counter intuitive result that in-fact the reverse is true. It is surprisingly hard to assign roles to nouns, but word-ratings have been successfull at completing analogies since the 1970's!
+Of course, the field of linguistics has recognized the somewhat counter intuitive result that in-fact the reverse is true. It is surprisingly hard to assign roles to pronouns, but word-ratings have been shown to be capable of completing analogies since the 1970's! (source)
 
 ## Winograd Schemas
 
-It turns out that
+The [Winograd Schema Challenge](https://en.wikipedia.org/wiki/Winograd_Schema_Challenge) (WSC) is a test of machine intelligence that was proposed by Hector Levesque (UoT). Roughly, it is a pair of sentences which contain two noun phrases and an ambiguous pronoun which refers to different noun-phrases in the sentences. The prototypical example is given below:
 
-For example, take the sentence:
 > The city councilmen refused the demonstrators a permit because they feared violence.
  
 In asking who *they* refers to, it seems a rather simplistic task to assign it to *the committee*. However, by just changing the last words, we can change the role asignment
 
 > The city councilmen refused the demonstrators a permit because they advocated violence.
+
+This demonstrates that what might seem a simple task which can simply be answered through syntactic regularities of language, actually requires understanding the semantics of the sentence.
+
+## Motivation
+
+So, why did I reference analogies and Winograd schemas? Well, it is motivated by the success of word rating models at solving analogies. My hunch is that 
 
 ## Looking for Analogies
 Following this line of thought, I considered whether we could derive word meanings through the use of assimilies in literature. For example, the sentence

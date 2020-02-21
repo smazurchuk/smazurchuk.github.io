@@ -3,7 +3,7 @@
 # To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 
 layout: post
-title: SOE Connectivity Analysis
+title: Connectivity Analysis Using Nilearn
 date: 2019-11-12
 ---
 # SOE Connectivity Exploration

@@ -62,4 +62,4 @@ allVecs = np.concatenate(wordVecs,axis=0)
 The result of this is a 34,000 dimensional vector for **each word** in **each patient** which gives us a data matrix of **[7,000 by 34,000]**. This can then be analyzed using dimensionality reduction techniques such as PCA, tSNE, and Diffusion mapping. Unfortunately, after running these analysis, there was no 'naturual' ordering to the words, so for the moment, this is where my analysis ends. 
 
 # References
-[^1]: " Saladin, Kenneth (2012). Anatomy and Physiology. New York: McGraw Hill. pp. 541, 542.
+[^1]: Saladin, Kenneth (2012). Anatomy and Physiology. New York: McGraw Hill. pp. 541, 542.

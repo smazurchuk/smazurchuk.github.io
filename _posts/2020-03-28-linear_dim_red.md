@@ -71,7 +71,7 @@ from sklearn import feature_selection as fs
 m = fs.mutual_info_regression(np.c_[A,B],B)
 m = m/max(m); r = np.corrcoef(A,B)
 ```
-This gives the result of `m=.00045` and `r=.01`. Now, We can correlate these signals by simply rotating the axis which generates a dependence. First, we will create a rotation matrix of 45 degrees, and apply this to our data. Here, a 2x2 matrix is multiplied (using `@`) by our row matrix
+This gives the result of **m=.00045** and **r=.01**. Now, We can correlate these signals by simply rotating the axis which generates a dependence. First, we will create a rotation matrix of 45 degrees, and apply this to our data. Here, a 2x2 matrix is multiplied (using `@`) by our row matrix
 
 ```python
 import seaborn as sns
@@ -87,7 +87,7 @@ from sklearn import feature_selection as fs
 m = fs.mutual_info_regression(r.T,r[1,:].T)
 m = m/max(m); r = np.corrcoef(A,B)
 ```
-This gives us the result of `m=.11` and `r=.84`! Our intuition should be confirmed! For a more general case, we could consider the overall dependence of these metrics on angle of rotation.
+This gives us the result of **m=.11** and **r=.84**! Our intuition should be confirmed! For a more general case, we could consider the overall dependence of these metrics on angle of rotation.
 
 # Example 2: Sensitivity to Rotation
 The following code will generate a plot of our metrics based on angle of rotation.
@@ -105,7 +105,7 @@ plt.plot(theta*180/3.14,vals); plt.grid(True)
 ```
 ![plt](/assets/MI_vs_Corr_rotation.svg)
 
-As you might expect, correlations are more depedent on rotations of the underlying data whereas M.I. is a much more invariant measure.
+As you might expect, correlations have a natural depedence on basis you choose to represent your data in! However, M.I. is a much more invariant measure to the particular choice of basis.
 
 # Example 3: Dependent Uniform Processes
 There are other sorts of distributions we can look at for comparing our two metrics. A common example used to demonstrate the difference between correlation and dependence is a modified uniform distribution. We can create two completely dependent variables from a uniform distribution using the `abs()` function
@@ -153,7 +153,7 @@ sns.jointplot(u,v)
 ```
 ![plt](/assets/spiral_marge.svg)
 
-Again, we find that the correlation is `.576` but the M.I is `.02`. This tells us that mutual information has **missed** the depedence. However, in the above discussion, we have glossed over a free parameter of the M.I. function in python: the number of nearest neighbors to consider. We can see the best that our function performs by iterating over all values for nearest neighbors.
+Again, we find that the correlation is **.576** but the M.I is **.02**. This tells us that mutual information has **missed** the depedence. However, in the above discussion, we have glossed over a free parameter of the M.I. function in python: the number of nearest neighbors to consider. We can see the best that our function performs by iterating over all values for nearest neighbors.
 
 ```python
 m=[]; ind=[];

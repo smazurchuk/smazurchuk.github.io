@@ -4,19 +4,19 @@ title: Linear Dimensionality Reduction
 date: 2020-03-28
 ---
 
-While there are many high-level descriptions of both Principle Component Analysis (PCA) and Indepedent Component Analysis (ICA), I thought I might write about a few key differences to soldify my own understanding. Both PCA and ICA are used as general dimensionality reduction techniques. However, the two methods operate under different assumptions and should not be confused with each other.
+While there are many high-level descriptions of both Principle Component Analysis (PCA) and Independent Component Analysis (ICA), I thought I might write about a few key differences to soldify my own understanding. Both PCA and ICA are used as general dimensionality reduction techniques. However, the two methods operate under different assumptions and should not be confused with each other.
 
 # Common to Both
-What all decompositions seek to preserve is some distance between all pairs of points. Strictly speaking, this means that for the euclidean metric, only rotations, flips, and translations are allowed (think all matrices with determinant=+-1). However, if we want to reduce the dimensinality of data, we necessarily need to discard some information. Most often, this corresponds to **a linear projection into a subspace**. Exactly how to determine which information should be "thrown away" depends on how we construct our projection matrix. This brings us to the two most common techniques 
+What all decompositions seek to preserve is some distance between all pairs of points. Strictly speaking, this means that for the euclidean metric, only rotations, flips, and translations are allowed (think all matrices with determinant=+-1). However, if we want to reduce the dimensionality of data, we necessarily need to discard some information. Most often, this corresponds to **a linear projection into a subspace**. Exactly how to determine which information should be "thrown away" depends on how we construct our projection matrix. This brings us to the two most common techniques 
 
 ## PCA 
 Most are familiar with PCA. Given some data that is multi-dimensional, the goal is to reduce the dimensionality of the data while still explaining as much of the **variance** as possible. In some sense, PCA can be thought of as fitting ellipses to data.
-Crucial to how PCA explains variance is that it assumes that the underlying variables of interest are *uncorrelated guassian random variables*. This brings us to our first point:
+Crucial to how PCA explains variance is that it assumes that the underlying variables of interest are *uncorrelated gaussian random variables*. This brings us to our first point:
 
 PCA assumes underlying variables are gaussian
 
 # Point 1:
-If a signal is assumed to be a linear combination of **indepedent** gaussian sources along with gaussian noise, then PCA and ICA optimize the same objective function. This should make sense from what we have just described
+If a signal is assumed to be a linear combination of **independent** gaussian sources along with gaussian noise, then PCA and ICA optimize the same objective function. This should make sense from what we have just described
 
 # Corrollary
 1. The sum of two gaussian random variables is also gaussian!
@@ -24,16 +24,22 @@ If a signal is assumed to be a linear combination of **indepedent** gaussian sou
 This is important for understanding as it makes clear why PCA amounts to rotation of coordinates. In particular, PCA generates a subspace with orthoganal basis vectors which explain a maximal amount of variance.
 
 Assume **A** and **B** are normally distributed variables
+
 $$ X \sim N(\mu_X,\sigma_X^2) $$
+
 $$ Y \sim N(\mu_Y,\sigma_Y^2) $$
+
 $$ Z = X+Y $$
+
 then:
-$$ Z \sim N(\mu_X+\mu_Y, \sigma_X^@+\sigma_Y^2) $$
-This particular formula requires that the undying variables are unccorelated, and indepedent, however these conditions can be relaxed and there is still a similar result.
+
+$$ Z \sim N(\mu_X+\mu_Y, \sigma_X^2+\sigma_Y^2) $$
+
+This particular formula requires that the undying variables are uncorrelated, and independent, however these conditions can be relaxed and there is still a similar result.
 
 # Why PCA works
 PCA as matrix diagonilazation. We know that matries are 
-To have two variables be uncorrated means that they have no covariance? But what is covariance? It is a dot product! That illistrates why it is always possible to generate a roation which uncorrelates the variables!!
+To have two variables be uncorrated means that they have no covariance? But what is covariance? It is a dot product! That illustrates why it is always possible to generate a roation which uncorrelates the variables!!
 
 Say we have N dimensions in our data (often coloumns). Taking each column as a vector with N observations, we know that N indepedent vectors will at most spread an N dimensional space (even if there N >> n observations).
 
@@ -73,7 +79,7 @@ import seaborn as sns
 r = np.array([[np.cos(45), np.sin(45)],[-np.sin(45), np.cos(45)]]) @ np.c_[A,B].T
 sns.jointplot('A','B',data=pd.DataFrame({'A':r[0,:],'B':r[1,:]}))
 ```
-![plt](/rot_joint_plt.svg)
+![plt](/assets/rot_joint_plt.svg)
 
 We again calculate our correlation coefficient along with the mutual information!
 
@@ -98,7 +104,7 @@ for num in range(len(theta)):
     vals[num,1]=(m/max(m))[0]
 plt.plot(theta*180/3.14,vals); plt.grid(True)
 ```
-![plt](/MI_vs_Corr_rotation.svg)
+![plt](/assets/MI_vs_Corr_rotation.svg)
 
 As you might expect, correlations are more depedent on rotations of the underlying data whereas M.I. is a much more invariant measure.
 
@@ -109,7 +115,7 @@ X = np.random.uniform(-1,1,500);
 Y = np.zeros(len(X)); Y[X<0]=-X[X<0]; Y[X>0]=X[X>0];
 sns.jointplot('X','Y',data=pd.DataFrame({'X':X,'Y':Y}),xlim=[-1,1])
 ```
-![plt](/uniform_depedent.svg)
+![plt](/assets/uniform_depedent.svg)
 
 For this plot, the M.I is 1, but the correlation is **.02**! Clearly, we see how limited the information correlation gives us is.
 
@@ -118,19 +124,23 @@ A fun example of data which from affar looks gaussion but up close isnt are spir
 
 $$ r(\theta) = \theta $$
 
-![plt](/pol_line.svg)
+![plt](/assets/pol_line.svg)
 
 We can then convert this to parametric coordinates and scale the axes seperatly
+
 $$ x = .2*t*Cos(t) $$
+
 $$ y = .1*t*Sin(t) $$
 
 This now looks like an ellipsoid spiral. We can rotate any parametric equation by an angle $$\theta$$ using the following equations:
+
 $$ u = x Cos(\theta) - y Sin(\theta) $$
+
 $$ v = x Sin(\theta) + y Cos(\theta) $$
 
 Applying this transformation we get the following plot
 
-![plt](/rot_pol_line.svg)
+![plt](/assets/rot_pol_line.svg)
 
 We can create these data points in python and look at the marginal distributions
 ```python
@@ -142,7 +152,7 @@ u = x*np.cos(theta)-y*np.sin(theta);
 v = x*np.sin(theta)+y*np.cos(theta);
 sns.jointplot(u,v)
 ```
-![plt](/spiral_marge.svg)
+![plt](/assets/spiral_marge.svg)
 
 Again, we find that the correlation is `.576` but the M.I is `.02`. This tells us that mutual information has **missed** the depdence. However, in the above discussion, we have glossed over a free parameter of the M.I. function in python: the number of nearest neighbors to consider. We can see the best that our funtion performs by iterating over all values for neigherest neighbors.
 
@@ -155,13 +165,15 @@ for i in range(1,80):
     m.append(tmp1/tmp2)
 plt.scatter(ind,m)
 ```
-![plt](/mut_info_nn.svg)
+![plt](/assets/mut_info_nn.svg)
 
 We see that there appears to be an upper limit. Another consideration are different symmetric shapes. If we change change the parametric parameter to `t=np.arrage(0,400,5)` we get the below shape:
 
-![plt](/spiral_marge_2.svg)
+![plt](/assets/spiral_marge_2.svg)
 
-For this case, it appears more neighbors isn't always better.
+![plt](/assets/mut_info_nn2.svg)
+
+This shows us the difficulty in finding the proper number of nearest neighbors: For the first case, more neighbors was better. For the second case, it turned out 2 neighbors was optimal!
 
 ## Closing Thoughts
 In the above disucssion, we looked at some of the underlying differences between PCA and ICA with a focus on what mutual information looks like for some specific pairs of random variables. Like most things in research, I think the results emphasize how important it is to be familiar with your data to know what marginal distributions look like, and how that impacts the results of different dimensionality reduction techniques. 

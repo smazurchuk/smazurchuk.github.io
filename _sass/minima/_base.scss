@@ -6,10 +6,9 @@ p, blockquote, pre, hr,
 dl, dd, ol, ul, figure, a {
   margin: 0;
   padding: 0;
-  &::selection {
-    background: #e4c04cb9;
-  }
 }
+// Generic yellow highlighting on all text
+::selection { background: #e4c04cb9; }
 
 
 

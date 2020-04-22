@@ -2,28 +2,26 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-
-
-		<title>reveal.js - Markdown Demo</title>
-
+		<title> {{ page.title }} | {{ site.title }} </title>
+    <meta name="author" content="{{ site.author }}" />
+    <!-- I stole this from a medium post -->
 		<link rel="stylesheet" href="/assets/reveal.js/css/reveal.css">
-		<link rel="stylesheet" href="/assets/reveal.js/css/theme/white.css" id="theme">
-
     <link rel="stylesheet" href="/assets/reveal.js/lib/css/monokai.css">
-
+    {%if page.theme %}
+      <link rel="stylesheet" href="{{ "/assets/reveal.js/css/theme/" | prepend: site.baseurl | append: page.theme | append: '.css' }}" id="theme"/>
+    {% else %}
+      <link rel="stylesheet" href="{{ "/assets/reveal.js/css/theme/black.css" | prepend: site.baseurl }}" id="theme"/>
+    {% endif %}
   </head>
-  <body>
   
+  <body>
     <div class="reveal">
       <div class="slides">
-
-
         <section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
           <script type="text/template">
-              {{ page.content }}
+{{ page.content }}
           </script>
-      </section>
-
+        </section>
       </div>
     </div>
     <!-- <script src="{{ "/assets/reveal.js/lib/js/head.min.js" | prepend: site.baseurl }}"></script> -->

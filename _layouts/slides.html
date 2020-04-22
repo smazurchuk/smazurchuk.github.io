@@ -4,14 +4,22 @@
     <meta charset="utf-8">
 		<title> {{ page.title }} | {{ site.title }} </title>
     <meta name="author" content="{{ site.author }}" />
-    <!-- I stole this from a medium post -->
 		<link rel="stylesheet" href="/assets/reveal.js/css/reveal.css">
     <link rel="stylesheet" href="/assets/reveal.js/lib/css/monokai.css">
+    <!-- I stole this from a medium post -->
     {%if page.theme %}
       <link rel="stylesheet" href="{{ "/assets/reveal.js/css/theme/" | prepend: site.baseurl | append: page.theme | append: '.css' }}" id="theme"/>
     {% else %}
       <link rel="stylesheet" href="{{ "/assets/reveal.js/css/theme/black.css" | prepend: site.baseurl }}" id="theme"/>
     {% endif %}
+    <!-- Adding Printing Capability -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '/assets/reveal.js/css/print/pdf.css' : '/assets/reveal.js/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
   </head>
   
   <body>
@@ -40,7 +48,8 @@
 					{ src: '/assets/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
                     { src: '/assets/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
                     { src: '/assets/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: '/assets/reveal.js/plugin/notes/notes.js' }
+					{ src: '/assets/reveal.js/plugin/notes/notes.js' },
+		      { src: '/assets/reveal.js/plugin/zoom-js/zoom.js', async: true }
 				]
 			});
 

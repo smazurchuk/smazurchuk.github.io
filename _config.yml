@@ -34,6 +34,10 @@ markdown: kramdown
 mathjax: true
 show_excerpts: false
 
+collections:
+  - slides
+
+
 # Build settings
 theme: minima
 plugins:

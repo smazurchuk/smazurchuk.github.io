@@ -20,13 +20,10 @@
       link.href = window.location.search.match( /print-pdf/gi ) ? '/assets/reveal.js/css/print/pdf.css' : '/assets/reveal.js/css/print/paper.css';
       document.getElementsByTagName( 'head' )[0].appendChild( link );
     </script>
-    <!-- Add SEO Tags -->
-    {%- seo -%}
-    {%- feed_meta -%}
+    <!-- Add Google Analytics -->
     {%- if jekyll.environment == 'production' and site.google_analytics -%}
       {%- include google-analytics.html -%}
     {%- endif -%}
-    {% seo %}
   </head>
   
   <body>

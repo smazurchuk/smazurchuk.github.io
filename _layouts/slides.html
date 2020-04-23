@@ -24,6 +24,14 @@
     {%- if jekyll.environment == 'production' and site.google_analytics -%}
       {%- include google-analytics.html -%}
     {%- endif -%}
+  <!-- add in scroll bar -->
+  <style type="text/css">
+    .present {
+    overflow-y: auto;
+    height: -webkit-fill-available;
+    }
+  </style>
+  
   </head>
   
   <body>
@@ -47,6 +55,8 @@
 				history: false,
 				center: true,
         slideNumber: true,
+        maxScale: 1.4,
+ 
 
 				// Optional libraries used to extend on reveal.js
 				dependencies: [

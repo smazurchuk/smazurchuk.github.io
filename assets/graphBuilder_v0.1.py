@@ -3,12 +3,12 @@
 """
 Created on Mon May  4 20:34:12 2020
 
-I didn't generate any of this template code. I took it from 
+I didn't generate any the matplotlib canvas code. I took it from 
 some turkish blog/youtube channel
 
 https://yapayzekalabs.blogspot.com/2018/11/pyqt5-gui-qt-designer-matplotlib.html
 
-It was a bit tricky to get matplotlib to work properly
+It was a bit tricky to get matplotlib to work properly.
 
 @author: stephen
 

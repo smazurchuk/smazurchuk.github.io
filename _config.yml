@@ -46,6 +46,7 @@ plugins:
 
 exclude:
   - /assets/reveal.js/css/theme/README.md
+  - /hidden/
 
 # Exclude from processing.
 # The following items will not be processed, by default.

@@ -1,0 +1,554 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    
+      <meta charset="utf-8">
+      <title>Bokeh Plot</title>
+      
+      
+        
+          
+        <style>
+            .panel-widget-box {
+                	min-height: 20px;
+                	background-color: #f5f5f5;
+                	border: 1px solid #e3e3e3 !important;
+                	border-radius: 4px;
+                	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+                	box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+                	overflow-x: hidden;
+                	overflow-y: hidden;
+                }
+
+                .scrollable {
+                  overflow: scroll;
+                }
+
+                progress {
+                	appearance: none;
+                	-moz-appearance: none;
+                	-webkit-appearance: none;
+
+                	border: none;
+                	height: 20px;
+                	background-color: whiteSmoke;
+                	border-radius: 3px;
+                	box-shadow: 0 2px 3px rgba(0,0,0,.5) inset;
+                	color: royalblue;
+                	position: relative;
+                	margin: 0 0 1.5em;
+                }
+
+                progress[value]::-webkit-progress-bar {
+                	background-color: whiteSmoke;
+                	border-radius: 3px;
+                	box-shadow: 0 2px 3px rgba(0,0,0,.5) inset;
+                }
+
+                progress[value]::-webkit-progress-value {
+                	position: relative;
+
+                	background-size: 35px 20px, 100% 100%, 100% 100%;
+                	border-radius:3px;
+                }
+
+                progress.active:not([value])::before {
+                	background-position: 10%;
+                	animation-name: stripes;
+                	animation-duration: 3s;
+                	animation-timing-function: linear;
+                	animation-iteration-count: infinite;
+                }
+
+                progress[value]::-moz-progress-bar {
+                	background-size: 35px 20px, 100% 100%, 100% 100%;
+                	border-radius:3px;
+                }
+
+                progress:not([value])::-moz-progress-bar {
+                	border-radius:3px;
+                	background:
+                	linear-gradient(-45deg, transparent 33%, rgba(0, 0, 0, 0.2) 33%, rgba(0, 0, 0, 0.2) 66%, transparent 66%) left/2.5em 1.5em;
+
+                }
+
+                progress.active:not([value])::-moz-progress-bar {
+                	background-position: 10%;
+                	animation-name: stripes;
+                	animation-duration: 3s;
+                	animation-timing-function: linear;
+                	animation-iteration-count: infinite;
+                }
+
+                progress.active:not([value])::-webkit-progress-bar {
+                	background-position: 10%;
+                	animation-name: stripes;
+                	animation-duration: 3s;
+                	animation-timing-function: linear;
+                	animation-iteration-count: infinite;
+                }
+
+                progress.primary[value]::-webkit-progress-value { background-color: #007bff; }
+                progress.primary:not([value])::before { background-color: #007bff; }
+                progress.primary:not([value])::-webkit-progress-bar { background-color: #007bff; }
+                progress.primary::-moz-progress-bar { background-color: #007bff; }
+
+                progress.secondary[value]::-webkit-progress-value { background-color: #6c757d; }
+                progress.secondary:not([value])::before { background-color: #6c757d; }
+                progress.secondary:not([value])::-webkit-progress-bar { background-color: #6c757d; }
+                progress.secondary::-moz-progress-bar { background-color: #6c757d; }
+
+                progress.success[value]::-webkit-progress-value { background-color: #28a745; }
+                progress.success:not([value])::before { background-color: #28a745; }
+                progress.success:not([value])::-webkit-progress-bar { background-color: #28a745; }
+                progress.success::-moz-progress-bar { background-color: #28a745; }
+
+                progress.danger[value]::-webkit-progress-value { background-color: #dc3545; }
+                progress.danger:not([value])::before { background-color: #dc3545; }
+                progress.danger:not([value])::-webkit-progress-bar { background-color: #dc3545; }
+                progress.danger::-moz-progress-bar { background-color: #dc3545; }
+
+                progress.warning[value]::-webkit-progress-value { background-color: #ffc107; }
+                progress.warning:not([value])::before { background-color: #ffc107; }
+                progress.warning:not([value])::-webkit-progress-bar { background-color: #ffc107; }
+                progress.warning::-moz-progress-bar { background-color: #ffc107; }
+
+                progress.info[value]::-webkit-progress-value { background-color: #17a2b8; }
+                progress.info:not([value])::before { background-color: #17a2b8; }
+                progress.info:not([value])::-webkit-progress-bar { background-color: #17a2b8; }
+                progress.info::-moz-progress-bar { background-color: #17a2b8; }
+
+                progress.light[value]::-webkit-progress-value { background-color: #f8f9fa; }
+                progress.light:not([value])::before { background-color: #f8f9fa; }
+                progress.light:not([value])::-webkit-progress-bar { background-color: #f8f9fa; }
+                progress.light::-moz-progress-bar { background-color: #f8f9fa; }
+
+                progress.dark[value]::-webkit-progress-value { background-color: #343a40; }
+                progress.dark:not([value])::-webkit-progress-bar { background-color: #343a40; }
+                progress.dark:not([value])::before { background-color: #343a40; }
+                progress.dark::-moz-progress-bar { background-color: #343a40; }
+
+                progress:not([value])::-webkit-progress-bar {
+                	border-radius: 3px;
+                	background:
+                	linear-gradient(-45deg, transparent 33%, rgba(0, 0, 0, 0.2) 33%, rgba(0, 0, 0, 0.2) 66%, transparent 66%) left/2.5em 1.5em;
+                }
+                progress:not([value])::before {
+                	content:" ";
+                	position:absolute;
+                	height: 20px;
+                	top:0;
+                	left:0;
+                	right:0;
+                	bottom:0;
+                	border-radius: 3px;
+                	background:
+                	linear-gradient(-45deg, transparent 33%, rgba(0, 0, 0, 0.2) 33%, rgba(0, 0, 0, 0.2) 66%, transparent 66%) left/2.5em 1.5em;
+                }
+
+                @keyframes stripes {
+                  from {background-position: 0%}
+                  to {background-position: 100%}
+                }
+
+        </style>
+        <style>
+            table.panel-df {
+                    margin-left: auto;
+                    margin-right: auto;
+                    border: none;
+                    border-collapse: collapse;
+                    border-spacing: 0;
+                    color: black;
+                    font-size: 12px;
+                    table-layout: fixed;
+                    width: 100%;
+                }
+
+                .panel-df tr, .panel-df th, .panel-df td {
+                    text-align: right;
+                    vertical-align: middle;
+                    padding: 0.5em 0.5em !important;
+                    line-height: normal;
+                    white-space: normal;
+                    max-width: none;
+                    border: none;
+                }
+
+                .panel-df tbody {
+                    display: table-row-group;
+                    vertical-align: middle;
+                    border-color: inherit;
+                }
+
+                .panel-df tbody tr:nth-child(odd) {
+                    background: #f5f5f5;
+                }
+
+                .panel-df thead {
+                    border-bottom: 1px solid black;
+                    vertical-align: bottom;
+                }
+
+                .panel-df tr:hover {
+                    background: lightblue !important;
+                    cursor: pointer;
+                }
+
+        </style>
+        <style>
+            .json-formatter-row {
+                  font-family: monospace;
+                }
+                .json-formatter-row,
+                .json-formatter-row a,
+                .json-formatter-row a:hover {
+                  color: black;
+                  text-decoration: none;
+                }
+                .json-formatter-row .json-formatter-row {
+                  margin-left: 1rem;
+                }
+                .json-formatter-row .json-formatter-children.json-formatter-empty {
+                  opacity: 0.5;
+                  margin-left: 1rem;
+                }
+                .json-formatter-row .json-formatter-children.json-formatter-empty:after {
+                  display: none;
+                }
+                .json-formatter-row .json-formatter-children.json-formatter-empty.json-formatter-object:after {
+                  content: "No properties";
+                }
+                .json-formatter-row .json-formatter-children.json-formatter-empty.json-formatter-array:after {
+                  content: "[]";
+                }
+                .json-formatter-row .json-formatter-string,
+                .json-formatter-row .json-formatter-stringifiable {
+                  color: green;
+                  white-space: pre;
+                  word-wrap: break-word;
+                }
+                .json-formatter-row .json-formatter-number {
+                  color: blue;
+                }
+                .json-formatter-row .json-formatter-boolean {
+                  color: red;
+                }
+                .json-formatter-row .json-formatter-null {
+                  color: #855A00;
+                }
+                .json-formatter-row .json-formatter-undefined {
+                  color: #ca0b69;
+                }
+                .json-formatter-row .json-formatter-function {
+                  color: #FF20ED;
+                }
+                .json-formatter-row .json-formatter-date {
+                  background-color: rgba(0, 0, 0, 0.05);
+                }
+                .json-formatter-row .json-formatter-url {
+                  text-decoration: underline;
+                  color: blue;
+                  cursor: pointer;
+                }
+                .json-formatter-row .json-formatter-bracket {
+                  color: blue;
+                }
+                .json-formatter-row .json-formatter-key {
+                  color: #00008B;
+                  padding-right: 0.2rem;
+                }
+                .json-formatter-row .json-formatter-toggler-link {
+                  cursor: pointer;
+                }
+                .json-formatter-row .json-formatter-toggler {
+                  line-height: 1.2rem;
+                  font-size: 0.7rem;
+                  vertical-align: middle;
+                  opacity: 0.6;
+                  cursor: pointer;
+                  padding-right: 0.2rem;
+                }
+                .json-formatter-row .json-formatter-toggler:after {
+                  display: inline-block;
+                  transition: transform 100ms ease-in;
+                  content: "\25BA";
+                }
+                .json-formatter-row > a > .json-formatter-preview-text {
+                  opacity: 0;
+                  transition: opacity 0.15s ease-in;
+                  font-style: italic;
+                }
+                .json-formatter-row:hover > a > .json-formatter-preview-text {
+                  opacity: 0.6;
+                }
+                .json-formatter-row.json-formatter-open > .json-formatter-toggler-link .json-formatter-toggler:after {
+                  transform: rotate(90deg);
+                }
+                .json-formatter-row.json-formatter-open > .json-formatter-children:after {
+                  display: inline-block;
+                }
+                .json-formatter-row.json-formatter-open > a > .json-formatter-preview-text {
+                  display: none;
+                }
+                .json-formatter-row.json-formatter-open.json-formatter-empty:after {
+                  display: block;
+                }
+                .json-formatter-dark.json-formatter-row {
+                  font-family: monospace;
+                }
+                .json-formatter-dark.json-formatter-row,
+                .json-formatter-dark.json-formatter-row a,
+                .json-formatter-dark.json-formatter-row a:hover {
+                  color: white;
+                  text-decoration: none;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-row {
+                  margin-left: 1rem;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-children.json-formatter-empty {
+                  opacity: 0.5;
+                  margin-left: 1rem;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-children.json-formatter-empty:after {
+                  display: none;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-children.json-formatter-empty.json-formatter-object:after {
+                  content: "No properties";
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-children.json-formatter-empty.json-formatter-array:after {
+                  content: "[]";
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-string,
+                .json-formatter-dark.json-formatter-row .json-formatter-stringifiable {
+                  color: #31F031;
+                  white-space: pre;
+                  word-wrap: break-word;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-number {
+                  color: #66C2FF;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-boolean {
+                  color: #EC4242;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-null {
+                  color: #EEC97D;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-undefined {
+                  color: #ef8fbe;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-function {
+                  color: #FD48CB;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-date {
+                  background-color: rgba(255, 255, 255, 0.05);
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-url {
+                  text-decoration: underline;
+                  color: #027BFF;
+                  cursor: pointer;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-bracket {
+                  color: #9494FF;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-key {
+                  color: #23A0DB;
+                  padding-right: 0.2rem;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-toggler-link {
+                  cursor: pointer;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-toggler {
+                  line-height: 1.2rem;
+                  font-size: 0.7rem;
+                  vertical-align: middle;
+                  opacity: 0.6;
+                  cursor: pointer;
+                  padding-right: 0.2rem;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-toggler:after {
+                  display: inline-block;
+                  transition: transform 100ms ease-in;
+                  content: "\25BA";
+                }
+                .json-formatter-dark.json-formatter-row > a > .json-formatter-preview-text {
+                  opacity: 0;
+                  transition: opacity 0.15s ease-in;
+                  font-style: italic;
+                }
+                .json-formatter-dark.json-formatter-row:hover > a > .json-formatter-preview-text {
+                  opacity: 0.6;
+                }
+                .json-formatter-dark.json-formatter-row.json-formatter-open > .json-formatter-toggler-link .json-formatter-toggler:after {
+                  transform: rotate(90deg);
+                }
+                .json-formatter-dark.json-formatter-row.json-formatter-open > .json-formatter-children:after {
+                  display: inline-block;
+                }
+                .json-formatter-dark.json-formatter-row.json-formatter-open > a > .json-formatter-preview-text {
+                  display: none;
+                }
+                .json-formatter-dark.json-formatter-row.json-formatter-open.json-formatter-empty:after {
+                  display: block;
+                }
+
+        </style>
+        <style>
+            .codehilite .hll { background-color: #ffffcc }
+                .codehilite  { background: #f8f8f8; }
+                .codehilite .c { color: #408080; font-style: italic } /* Comment */
+                .codehilite .err { border: 1px solid #FF0000 } /* Error */
+                .codehilite .k { color: #008000; font-weight: bold } /* Keyword */
+                .codehilite .o { color: #666666 } /* Operator */
+                .codehilite .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+                .codehilite .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+                .codehilite .cp { color: #BC7A00 } /* Comment.Preproc */
+                .codehilite .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+                .codehilite .c1 { color: #408080; font-style: italic } /* Comment.Single */
+                .codehilite .cs { color: #408080; font-style: italic } /* Comment.Special */
+                .codehilite .gd { color: #A00000 } /* Generic.Deleted */
+                .codehilite .ge { font-style: italic } /* Generic.Emph */
+                .codehilite .gr { color: #FF0000 } /* Generic.Error */
+                .codehilite .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+                .codehilite .gi { color: #00A000 } /* Generic.Inserted */
+                .codehilite .go { color: #888888 } /* Generic.Output */
+                .codehilite .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+                .codehilite .gs { font-weight: bold } /* Generic.Strong */
+                .codehilite .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+                .codehilite .gt { color: #0044DD } /* Generic.Traceback */
+                .codehilite .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+                .codehilite .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+                .codehilite .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+                .codehilite .kp { color: #008000 } /* Keyword.Pseudo */
+                .codehilite .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+                .codehilite .kt { color: #B00040 } /* Keyword.Type */
+                .codehilite .m { color: #666666 } /* Literal.Number */
+                .codehilite .s { color: #BA2121 } /* Literal.String */
+                .codehilite .na { color: #7D9029 } /* Name.Attribute */
+                .codehilite .nb { color: #008000 } /* Name.Builtin */
+                .codehilite .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+                .codehilite .no { color: #880000 } /* Name.Constant */
+                .codehilite .nd { color: #AA22FF } /* Name.Decorator */
+                .codehilite .ni { color: #999999; font-weight: bold } /* Name.Entity */
+                .codehilite .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+                .codehilite .nf { color: #0000FF } /* Name.Function */
+                .codehilite .nl { color: #A0A000 } /* Name.Label */
+                .codehilite .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+                .codehilite .nt { color: #008000; font-weight: bold } /* Name.Tag */
+                .codehilite .nv { color: #19177C } /* Name.Variable */
+                .codehilite .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+                .codehilite .w { color: #bbbbbb } /* Text.Whitespace */
+                .codehilite .mb { color: #666666 } /* Literal.Number.Bin */
+                .codehilite .mf { color: #666666 } /* Literal.Number.Float */
+                .codehilite .mh { color: #666666 } /* Literal.Number.Hex */
+                .codehilite .mi { color: #666666 } /* Literal.Number.Integer */
+                .codehilite .mo { color: #666666 } /* Literal.Number.Oct */
+                .codehilite .sa { color: #BA2121 } /* Literal.String.Affix */
+                .codehilite .sb { color: #BA2121 } /* Literal.String.Backtick */
+                .codehilite .sc { color: #BA2121 } /* Literal.String.Char */
+                .codehilite .dl { color: #BA2121 } /* Literal.String.Delimiter */
+                .codehilite .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+                .codehilite .s2 { color: #BA2121 } /* Literal.String.Double */
+                .codehilite .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+                .codehilite .sh { color: #BA2121 } /* Literal.String.Heredoc */
+                .codehilite .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+                .codehilite .sx { color: #008000 } /* Literal.String.Other */
+                .codehilite .sr { color: #BB6688 } /* Literal.String.Regex */
+                .codehilite .s1 { color: #BA2121 } /* Literal.String.Single */
+                .codehilite .ss { color: #19177C } /* Literal.String.Symbol */
+                .codehilite .bp { color: #008000 } /* Name.Builtin.Pseudo */
+                .codehilite .fm { color: #0000FF } /* Name.Function.Magic */
+                .codehilite .vc { color: #19177C } /* Name.Variable.Class */
+                .codehilite .vg { color: #19177C } /* Name.Variable.Global */
+                .codehilite .vi { color: #19177C } /* Name.Variable.Instance */
+                .codehilite .vm { color: #19177C } /* Name.Variable.Magic */
+                .codehilite .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+                .markdown h1 { margin-block-start: 0.34em }
+                .markdown h2 { margin-block-start: 0.42em }
+                .markdown h3 { margin-block-start: 0.5em }
+                .markdown h4 { margin-block-start: 0.67em }
+                .markdown h5 { margin-block-start: 0.84em }
+                .markdown h6 { margin-block-start: 1.17em }
+                .markdown ul { padding-inline-start: 2em }
+                .markdown ol { padding-inline-start: 2em }
+                .markdown strong { font-weight: 600 }
+                .markdown a { color: -webkit-link }
+                .markdown a { color: -moz-hyperlinkText }
+
+        </style>
+        
+        
+          
+        <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-2.1.1.min.js" integrity="sha384-kLr4fYcqcSpbuI95brIH3vnnYCquzzSxHPU6XGQCIkQRGJwhg0StNbj1eegrHs12" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+            Bokeh.set_log_level("info");
+        </script>
+        
+      
+      
+    
+  </head>
+  
+  
+  <body>
+    
+      
+        
+          
+          
+            
+              <div class="bk-root" id="ea3d9331-88a4-4805-afcf-387e3cecd5ce" data-root-id="2213"></div>
+            
+          
+        
+      
+      
+        <script type="application/json" id="2359">
+          {"1ee30bdc-9692-411f-acc7-d9152bf9bbab":{"roots":{"references":[{"attributes":{},"id":"2254","type":"BasicTickFormatter"},{"attributes":{"overlay":{"id":"2236"}},"id":"2232","type":"BoxZoomTool"},{"attributes":{},"id":"2227","type":"BasicTicker"},{"attributes":{},"id":"2256","type":"BasicTickFormatter"},{"attributes":{},"id":"2216","type":"DataRange1d"},{"attributes":{},"id":"2231","type":"WheelZoomTool"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"field":"color"},"line_alpha":{"value":0.1},"line_color":{"field":"color"},"size":{"units":"screen","value":5.590169943749474},"x":{"field":"x"},"y":{"field":"y"}},"id":"2248","type":"Circle"},{"attributes":{"bottom_units":"screen","fill_alpha":0.5,"fill_color":"lightgrey","left_units":"screen","level":"overlay","line_alpha":1.0,"line_color":"black","line_dash":[4,4],"line_width":2,"right_units":"screen","top_units":"screen"},"id":"2236","type":"BoxAnnotation"},{"attributes":{},"id":"2258","type":"UnionRenderers"},{"attributes":{"axis":{"id":"2226"},"dimension":1,"ticker":null,"visible":false},"id":"2229","type":"Grid"},{"attributes":{},"id":"2259","type":"Selection"},{"attributes":{},"id":"2214","type":"DataRange1d"},{"attributes":{},"id":"2223","type":"BasicTicker"},{"attributes":{"formatter":{"id":"2256"},"ticker":{"id":"2223"},"visible":false},"id":"2222","type":"LinearAxis"},{"attributes":{},"id":"2220","type":"LinearScale"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"2230"},{"id":"2231"},{"id":"2232"},{"id":"2233"},{"id":"2234"},{"id":"2235"},{"id":"2237"}]},"id":"2238","type":"Toolbar"},{"attributes":{"formatter":{"id":"2254"},"ticker":{"id":"2227"},"visible":false},"id":"2226","type":"LinearAxis"},{"attributes":{"fill_alpha":{"field":"alpha"},"fill_color":{"field":"color"},"line_alpha":{"field":"alpha"},"line_color":{"field":"color"},"size":{"units":"screen","value":5.590169943749474},"x":{"field":"x"},"y":{"field":"y"}},"id":"2247","type":"Circle"},{"attributes":{"callback":null,"tooltips":[["word","@word"],["category","@category"],["Noun_Type","@Noun_Type"]]},"id":"2237","type":"HoverTool"},{"attributes":{"data_source":{"id":"2212"},"glyph":{"id":"2247"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"2248"},"selection_glyph":null,"view":{"id":"2250"}},"id":"2249","type":"GlyphRenderer"},{"attributes":{"axis":{"id":"2222"},"ticker":null,"visible":false},"id":"2225","type":"Grid"},{"attributes":{},"id":"2235","type":"HelpTool"},{"attributes":{"text":""},"id":"2251","type":"Title"},{"attributes":{},"id":"2230","type":"PanTool"},{"attributes":{"source":{"id":"2212"}},"id":"2250","type":"CDSView"},{"attributes":{"data":{"Noun_Type":["object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","object","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event","event"],"alpha":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"category":["animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event"],"color":["#8000ff","#8000ff","#8000ff","#8000ff","#8000ff","#8000ff","#8000ff","#8000ff","#8000ff","#8000ff","#8000ff","#8000ff","#8000ff","#8000ff","#8000ff","#8000ff","#8000ff","#8000ff","#8000ff","#8000ff","#8000ff","#8000ff","#8000ff","#8000ff","#8000ff","#8000ff","#8000ff","#8000ff","#8000ff","#8000ff","#8000ff","#8000ff","#8000ff","#8000ff","#8000ff","#8000ff","#8000ff","#8000ff","#8000ff","#8000ff","#386df9","#386df9","#386df9","#386df9","#386df9","#386df9","#386df9","#386df9","#386df9","#386df9","#386df9","#386df9","#386df9","#386df9","#386df9","#386df9","#386df9","#386df9","#386df9","#386df9","#386df9","#386df9","#386df9","#386df9","#386df9","#386df9","#386df9","#386df9","#386df9","#386df9","#386df9","#386df9","#386df9","#386df9","#386df9","#386df9","#386df9","#386df9","#386df9","#386df9","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ecc86f","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#ff6d38","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#12c8e6","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#5af8c8","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#a4f89f","#ff0000","#ff0000","#ff0000","#ff0000","#ff0000","#ff0000","#ff0000","#ff0000","#ff0000","#ff0000","#ff0000","#ff0000","#ff0000","#ff0000","#ff0000","#ff0000","#ff0000","#ff0000","#ff0000","#ff0000","#ff0000","#ff0000","#ff0000","#ff0000","#ff0000","#ff0000","#ff0000","#ff0000","#ff0000","#ff0000","#ff0000","#ff0000","#ff0000","#ff0000","#ff0000","#ff0000","#ff0000","#ff0000","#ff0000","#ff0000"],"index":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243,244,245,246,247,248,249,250,251,252,253,254,255,256,257,258,259,260,261,262,263,264,265,266,267,268,269,270,271,272,273,274,275,276,277,278,279,280,281,282,283,284,285,286,287,288,289,290,291,292,293,294,295,296,297,298,299,300,301,302,303,304,305,306,307,308,309,310,311,312,313,314,315,316,317,318,319],"label":["animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","animal","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","food/plant","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","tool","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","vehicle","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","negative_event","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","nonverbal_sound","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","social_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event","verbal_event"],"word":["alligator","ant","baboon","bison","butterfly","cardinal","caterpillar","chameleon","cheetah","chicken","chimpanzee","chipmunk","cricket","crow","dog","dolphin","duck","elephant","fish","goldfish","hamster","hawk","hippopotamus","horse","jackal","lion","monkey","moose","mosquito","mouse","octopus","penguin","rhinoceros","salmon","snake","tiger","trout","turkey","turtle","whale","asparagus","banana","bean","beer","blueberry","bread","broccoli","carrot","champagne","cheese","cherry","chestnut","chocolate","cider","coffee","cranberry","cucumber","custard","dandelion","egg","eggplant","flower","ham","honey","jam","ketchup","lemonade","milk","mushroom","mustard","nectarine","pineapple","plant","pudding","pumpkin","raspberry","sauerkraut","spaghetti","tobacco","tomato","anchor","axe","baseball","binoculars","book","calculator","camera","candle","cash","comb","corkscrew","crutches","dime","faucet","football","fork","glass","hairbrush","hammer","handsaw","hoe","key","keyboard","ladle","magazine","microscope","newspaper","pencil","rake","sandpaper","scissors","skillet","spatula","stapler","stethoscope","straw","thermometer","ticket","tongs","umbrella","ambulance","automobile","barge","bicycle","boat","bobsled","bus","canoe","car","carriage","convertible","elevator","escalator","ferry","glider","helicopter","jeep","limousine","locomotive","motorcycle","plane","rocket","rowboat","sailboat","scooter","skateboard","sled","sleigh","steamer","streetcar","submarine","subway","taxi","tractor","train","tricycle","trolley","truck","van","wagon","avalanche","battle","blizzard","bombing","brawl","cyclone","downpour","drought","earthquake","epidemic","explosion","famine","flood","gunshot","gust","hail","hailstorm","hurricane","inferno","invasion","landslide","lightning","monsoon","murder","outbreak","plague","raid","riot","shooting","squall","stampede","storm","tempest","thunderstorm","tornado","twister","volcano","war","whirlwind","wildfire","applause","bang","bellowing","boom","chattering","chuckle","clapping","clattering","crackle","crescendo","giggle","groaning","growling","grunt","gulp","hiccup","jingle","laughter","melody","murmuring","reverberation","roaring","rumble","rustle","screaming","screeching","shrieking","sigh","siren","sizzle","snap","sneeze","sobbing","squeaking","squeal","thumping","thunderclap","wheezing","whimpering","whine","banquet","bash","carnival","celebration","christening","circus","cocktails","concert","conference","contest","convention","cookout","cruise","dance","expedition","expo","fair","feast","festival","fiesta","gathering","housewarming","jubilee","luncheon","march","musical","outing","pageant","parade","party","picnic","prom","rally","reception","reunion","safari","symphony","tour","tournament","wedding","advice","apology","class","commemoration","comment","commentary","complaint","compliment","debate","denial","deposition","dictation","discourse","dispute","eulogy","greeting","grievance","huddle","interrogation","joke","lecture","lesson","meeting","plea","praise","protest","quarrel","rant","rebuke","rebuttal","recitation","sermon","showdown","squabble","testimony","thanks","threat","trial","tribute","wisecrack"],"x":{"__ndarray__":"aZbvQGetB0EyivhA+XbyQEFQDEENCARBISQLQdpEC0FrTPFA9tUJQfCf/EAiSARBstsCQY7WAUFBaAJB4TX/QB2PBUHG7fNAsB4PQSYZDEEt4gdB1Xj/QCIg8UAo0QNBHHb0QIQ57kAhvgBBK2X2QGGV/0B3ZgBBlx0OQb4qCkG0r+5AO4gPQaic9kC/K+5ABggPQbdVBUFn1QtBESn4QPURGUHCvRlB8eIdQe8/CkGB4xlBH7ETQWKCG0H8YxtBbeAKQddoEEGCsBpBxT4eQYVmDkH2hAtBpHkKQaGcHEFZ4xdBanAPQWimHUHDcRxBF2ocQbZzHkEKBw9Bjw4TQVLKEEExqw1BUw8JQVwJDUFRUx1BT/0OQaoKGEGDSxhB+UQdQasoDUGZexhB+xoaQeMtFEHnkxBBERkTQRJVGEHGiRBBggIqQTfYJEHUZDBB98c5QYjuNkFzmThBIU8hQfeROkGoLjRBtnAvQQ62KEHiBDpBbtExQZPnIEG3qjFBTkA1QUYINEGfqyxBJz0rQb4vKUGwDzZB3D04QeOJMEFPAThBSFEqQU3COEHGGjlByeIqQSXKMUHNcDBBKTYzQRgFL0Gi0jFBM7ArQXKFMEGHjy9BCTI2QeTcL0FseDNBap4DQZh9D0FCDwtBC0gZQexFDkGK5RZBQZgJQYpmGEHGpg9BFioOQWp5EUGCvg9BjakRQcRKB0HZ2hVBwMMDQYGnEEEIehFBVTkFQSZuDUHv4gVBqhEEQa1/GUFN7BJBW6EVQVlVGUFsWhhBoD8TQVw8BkFsdwhBaqIOQf4bBEHwuQtBsb8JQbtEBUGM8BlBrS4GQbQoDkGTzQ9BYaYWQYDjHcC1UjPArukfwBUQLcAELjTAvOAewOrjAcBKaB/ADUAcwAumJsBYIBzAbbsjwFEaGMAIiCfAS0NbvvbSFMDTGBXAnfcawKMHI8Ar7zjAvOkgwJplFsCifBDAh8YtwNApJsDEoSHAYKU5wPkbPcB8hjLA2awSwAxQFMBSowfAeJYKwEB4A8AF1BXAQlklwKRNHcDDijPAdksYwFoAJMC+HpbAxuRmvsSJJL8ARlG+EWgcwB0uHMBX+ZjA4rWRvjOBi74YdRy/xH0VwGBNgr/k/CG/7ipzv7QFX78XiEe/m6cHvxXlF8Bnnbq/ktgSwKNzw77YGvi+nYiwvgVnoL5AbU2/qdTBvh4CJb90R4m/CYNdvjfGr77d/EK+RUIZv/DIjb/tZAG/GhMRvyhOa76iFHO+ZtRcv2WniL+3bne/dg1xwG0ilcCvL5/AoQuUwGVDf8CJ9J/ACtoKQS5gmcC/X2rArn6BwN1bgMBDimTAzp4GQVaUksDzJn/A0C2BwO+inMASE2XAEZaawLrel8BtNH/ArTl0wFJ7kMDaH2jAOCyQwKt4m8Cumn3AIJOCwJOUoMAsHJDAV9hjwDRSkcBcGITALFWGwL/bd8BnR4HAOR2ewJrOgMCujYHAB5GKwIcAKsCr7CzAZixvwJi7TcA2cSXA7NY3wOcyK8Cw8SXAB5w/wAOxKsCPYELA8kU+wOINN8DuoTPAQ/xCwIMQHsBrlC3A4YtzwHrLQsAhqifAlCRiwNoZX8Awt17ALFUzwCSnI8AydFTAphYqwEzFIcBZxSzA5uc1wFlBOsDNpVLAodQxwHDJJsAmBz7AkdEiwADmLsCSakzAqCYpwGCJKsA=","dtype":"float32","order":"little","shape":[320]},"y":{"__ndarray__":"UdbiPwrTlz+TSPc/Tlv/P6E5kT+fdr0/vWeQPwpFmT/Qxdc/GQzSP4XM7z8TeLk/uH2yPzBJtj8QY+g/6f78P21dzD/KrAZAFw+/P20plT++h6w/EsLNP3/HAkB8DOs/d2DIP65x5j+8UNo/Xs4CQIwtpD+8CKE/Tj6wP2Ckuz/aNf4/NxS2PzjHxD+bJ+Y/TZm/P0/r2D8SVaE/4rAJQNAFNEExkS1Bl+Q1QROJM0H02jRB19ErQQgVM0GLszFBzkQyQa4DLkEBwzRBLXk2QQrtNEEkajJB97wyQdi9NUHMUzJBMusxQRR+KEEiIi5B7l82QR9EJkGs/i9BeWUtQT0uMEEdiC5B/kEwQRZ0LUGPhzVBte8sQbgLMEFzQy5BfYMnQRqHM0H2eC5B5zIyQdpYM0GnpDBBr1E0QUuwLkH7DNdAASLlQBnK3kD3Y/9AeGADQann+UB4FgBB7b8gQdkMBEGhmvRAWyrvQBBZ6UDCrP1AVNLtQKms10A5N/tAUTzvQONG9UBGAeJA7onkQFS96EBLYPRAntT5QKVb+UAZygFBRS72QMnuAUGi1fhAs4foQNlh8ECgOexAXVTsQB0H90BF0etA3Fv0QBaw/UCvwvxA6JABQQ+r8UBtHfNACuOxQE4bskA17MpA5drLQNdsw0CT/chAbTS6QORKz0DNFbNA7PTBQMLAukDQosxAfXPNQKbDv0D4o8xA71OxQCJeuECqmcFApCG1QLiIr0Cpq7FAU96yQKgY1kD8MspAray/QFrPw0AXyMpA//jGQGEev0DG7LdAM5bPQOcZt0Aph7hAvl6/QEVLtEBiY8lAdj+3QF7Is0AoeLpABJjOQM/C3L9z75w9dvLov64mDb8TCgo+FUSVv0t8nb/ILgg/GAhiv9wrHT9+EMy/q1cTP43Xor9joIu+jZRGQGbg2L8MF9i/4IOYv+j42b9VxCc+25CSv5kr47/QCJm/eyj/PiRCED8juBw/Y2qaPsINgD5SnLC9AeF2v44iTb9LsJu/TNeJvwd6mb/0ZJm/eiOGvyu92L/F4VM+6DCIv4tK279107NAWGMjQDUEFEDw4CVAA89iQD3meUB7vLRAT882QLRgRUAlPlVAfrV4QGnuHUADeRhAu6EkQMoxOUBUyDFAC9dUQJsfeEDcC2pATp1RQBxBRECJPiNA2To/QEqfTkCASglAVicOQDgFCECsfy9ARokbQIH1UUCmRUlA9Hs1QNV2FUBwkTFAFMANQIybOkAHYzJAfxUlQIqQEkD/nQ1AdLSyQBrDvUDLMcVApXC+QEq0tEBZb8NAsmEzQao2v0D+0IJAkNK7QIsuoUAXbrlAAn/HQI0ytUDwwLdAOXuoQD5/x0AoUrhAW1rFQGIpwUCUEqVAw8uxQC09vUCMGrdASIy0QLcAvEBpf7ZAvmixQLiVv0BDeblAuhu5QDB2ukCqcZlADDCpQOD7rEDT3LhA8yS8QD5EtkDyCLRArvi1QI5NT0ArdFNAL1yKQLg2dkBRDVFA+s1cQEosBkDJ1XlAY4ZCQN3R/j9scS9A6iFbQPySXUDr0Os/e2xFQFzRfkCrQgdAAaqMQPljDECazGxABeV4QFy6eEBvKXFAxUI2QMNacUBUqSdAFDvfPzmp+j/3GAZAl9xCQKTtXEBu8mdAokHfP5wY9z9L40BAq+R3QLu5wj/3/CFAKLx3QJNTW0A=","dtype":"float32","order":"little","shape":[320]}},"selected":{"id":"2259"},"selection_policy":{"id":"2258"}},"id":"2212","type":"ColumnDataSource"},{"attributes":{"background_fill_color":"black","below":[{"id":"2222"}],"center":[{"id":"2225"},{"id":"2229"}],"left":[{"id":"2226"}],"plot_height":800,"plot_width":800,"renderers":[{"id":"2249"}],"title":{"id":"2251"},"toolbar":{"id":"2238"},"x_range":{"id":"2214"},"x_scale":{"id":"2218"},"y_range":{"id":"2216"},"y_scale":{"id":"2220"}},"id":"2213","subtype":"Figure","type":"Plot"},{"attributes":{},"id":"2218","type":"LinearScale"},{"attributes":{},"id":"2234","type":"ResetTool"},{"attributes":{},"id":"2233","type":"SaveTool"}],"root_ids":["2213"]},"title":"Bokeh Application","version":"2.1.1"}}
+        </script>
+        <script type="text/javascript">
+          (function() {
+            var fn = function() {
+              Bokeh.safely(function() {
+                (function(root) {
+                  function embed_document(root) {
+                    
+                  var docs_json = document.getElementById('2359').textContent;
+                  var render_items = [{"docid":"1ee30bdc-9692-411f-acc7-d9152bf9bbab","root_ids":["2213"],"roots":{"2213":"ea3d9331-88a4-4805-afcf-387e3cecd5ce"}}];
+                  root.Bokeh.embed.embed_items(docs_json, render_items);
+                
+                  }
+                  if (root.Bokeh !== undefined) {
+                    embed_document(root);
+                  } else {
+                    var attempts = 0;
+                    var timer = setInterval(function(root) {
+                      if (root.Bokeh !== undefined) {
+                        clearInterval(timer);
+                        embed_document(root);
+                      } else {
+                        attempts++;
+                        if (attempts > 100) {
+                          clearInterval(timer);
+                          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+                        }
+                      }
+                    }, 10, root)
+                  }
+                })(window);
+              });
+            };
+            if (document.readyState != "loading") fn();
+            else document.addEventListener("DOMContentLoaded", fn);
+          })();
+        </script>
+    
+  </body>
+  
+</html>

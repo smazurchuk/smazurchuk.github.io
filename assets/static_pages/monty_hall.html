@@ -13078,16 +13078,16 @@ div#notebook {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Monty-Hall-Problem">Monty Hall Problem<a class="anchor-link" href="#Monty-Hall-Problem">&#182;</a></h1><p>One of the strengths of python is that it is <em>dynamically typed</em>. This is opposed to c or c++ where variables have to be delcared at the start of the program (this allows for compilation). As such, one of the costs of this benefit is that loops (<code>for</code> loops, <code>while</code> loops, etc) are very slow because variable types have to be checked with each iteration of the loop.</p>
-<p>As such, one of the keys to efficient programming in python is <strong>avoiding loops</strong>. As such, below is my vectorized (loop-free) solution to the monty hall problem.</p>
+<p>As such, one of the keys to efficient programming in python is <strong>avoiding loops</strong>. Below is my vectorized (loop-free) solution to the monty hall problem.</p>
 <p>The general approach utilized the idea that the contestant will always follow the same strategy. That is, they always choose 'door 3' (index=2):</p>
 
 <pre><code>1. Choose answer randomly from 0-2
 2. Select a test door to open (cannot be door 3)
 3. If door open contains answer, switch to other door.
-    * This was the tricky part. This use modular arithmitic here to avoid writing out the logic
+    * This was the tricky part. This uses modular arithmitic to avoid writing out the logic
 
 </code></pre>
-<p>The result runs fast!</p>
+<p>The result is fast!</p>
 
 </div>
 </div>

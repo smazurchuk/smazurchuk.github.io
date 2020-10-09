@@ -1,0 +1,175 @@
+<html>
+<!-- 
+    This is my simplistic version of an animation similar to this page
+
+    https://matias.ma/nsfw/
+
+    The animation follows from here:
+
+    http://slicker.me/javascript/sprite.htm
+
+    Some basic design things I did was to make image height based on browser height. I mainted the 
+    original ratio (so image width scales based on height)
+
+    TODO:
+        * Is it possible to have login page?
+        * Resize when screen resizes
+
+Notes:
+    * Don't know difference between let and var (or nothing at all)
+-->
+<style>  
+*, html {
+    margin:0;
+    padding:0;  
+}
+body {
+  overflow: hidden; /* Hide scrollbars */
+}
+.exactCenter {
+      position: fixed;
+      top: 45%;
+      left: 45%;
+      margin-top: -100px;
+      margin-left: -100px;
+      font-size:3vw;
+      font-weight: bold;
+    }
+
+.button {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #008CBA;
+}
+.button:hover {
+  background-color: #008CBA;
+  color: white;
+}
+</style> 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-152966807-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-152966807-1');
+</script>
+
+<body>
+<button id="button" class="exactCenter button">Trust the Process?</button>
+<canvas id="myCanvas"></canvas>
+<audio id="audio" preload="" loop autoplay> <source src="bills_shout.mp3" type="audio/mp3"> <embed src="bills_shout.mp3" loop> </audio>
+
+<script>
+let button = document.getElementById("button")
+let audio = document.getElementById("audio");
+let logo = new Image();
+logo.src = "bill_logo.png";
+logo_height = 3594;
+logo_width = 5750;
+var onLogo = true;
+const palettes = ["#C60C30", "#00338D", "green", "orange", "yellow"];
+
+let image = new Image();
+image.src = "ja_sprite_nbg.png";
+let counter = 0,
+  frame_width = 401,
+  frame_height = 480;
+image.onload = function() {
+  let canvas = document.getElementById("myCanvas");
+  let context = canvas.getContext("2d");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  imH = Math.floor(.7*window.innerHeight);
+  imW = Math.floor((frame_width/frame_height)*imH);
+  top_offset = .1*window.innerHeight;
+  totW = imW + window.innerWidth;
+  left = (window.innerWidth - imW)/2;
+  
+  button.addEventListener("click", function() {audio.play(); button.style.visibility = "hidden";})
+  button.addEventListener("click", animate)
+  button.addEventListener("click", function() {onLogo=false;})
+  window.addEventListener("resize",winResize)
+  window.requestAnimationFrame(bill_logo);
+
+  function winResize(tmp){
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  imH = Math.floor(.7*window.innerHeight);
+  imW = Math.floor((frame_width/frame_height)*imH);
+  top_offset = .1*window.innerHeight;
+  totW = imW + window.innerWidth;
+  left = (window.innerWidth - imW)/2;
+  if (tmp){
+    window.requestAnimationFrame(bill_logo);}
+  }
+
+  function bill_logo(){
+    context.drawImage(logo, 0, 0,logo_width, logo_height, left, 100, imW, imH);
+  }
+
+
+  function animate() {
+    let frame = Math.floor(counter % 58);
+    pps = 8;
+    let loc = Math.floor(counter % (totW/pps));
+
+    if ((counter % 20)===0){
+      context.lineWidth = "100";
+      context.fillStyle = palettes[Math.floor(Math.random()*palettes.length)];
+      context.strokeStyle = palettes[Math.floor(Math.random()*palettes.length)];
+    }
+    context.fillRect(0, 0, canvas.width, canvas.height);
+    context.strokeRect(0, 0, canvas.width, canvas.height);
+
+    // center
+    context.save();
+    context.globalAlpha = .8;
+    context.drawImage(image, frame * frame_width, 0, frame_width, frame_height, left, 100, imW, imH);
+    context.restore();
+
+    // left-to-right upper
+    context.save();
+    context.globalAlpha = .6;
+    tmp = Math.floor((counter+15)%58);
+    context.drawImage(image, tmp * frame_width, 0, frame_width, frame_height, (pps*loc)-frame_width, 0, imW, imH);
+    context.restore();
+
+    // left-to-right lower
+    context.save();
+    context.globalAlpha = .6;
+    tmp = Math.floor((counter+15)%58);
+    imHt = Math.floor(.4*window.innerHeight);
+    imWt = Math.floor((frame_width/frame_height)*imH);
+    loct = Math.floor((counter+120) % (totW/pps));
+    context.drawImage(image, tmp * frame_width, 0, frame_width, frame_height, (pps*loct)-frame_width, 400, imW, imH);
+    context.restore();
+
+    // reverse lower
+    context.save();
+    context.globalAlpha = .4;
+    tmp = Math.floor((counter+40)%58);
+    loct = Math.floor((counter+40) % (totW/pps));
+    context.drawImage(image, tmp * frame_width, 0, frame_width, frame_height, window.innerWidth - (pps*loct), 300 , imWt, imHt);
+    context.restore();
+
+
+    // reverse upper
+    context.save();
+    context.globalAlpha = .5;
+    tmp = Math.floor((counter+20)%58);
+    imHt = Math.floor(.4*window.innerHeight);
+    imWt = Math.floor((frame_width/frame_height)*imH);
+    loct = Math.floor((counter+80) % (totW/pps));
+    context.drawImage(image, tmp * frame_width, 0, frame_width, frame_height, window.innerWidth - (pps*loct), 50 , imWt, imHt);
+    context.restore();
+
+    counter = counter + 1;
+    if (counter % 10 === 10) {change_bg();}
+    if (counter > totW ) counter = 0;
+    window.setTimeout(animate,30);
+  }
+}
+</script>
+</body></html>

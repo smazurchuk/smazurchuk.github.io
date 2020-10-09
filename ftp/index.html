@@ -29,9 +29,7 @@ body {
 .exactCenter {
       position: fixed;
       top: 45%;
-      left: 45%;
-      margin-top: -100px;
-      margin-left: -100px;
+      left: 35%;
       font-size:3vw;
       font-weight: bold;
     }
@@ -106,7 +104,10 @@ image.onload = function() {
   }
 
   function bill_logo(){
-    context.drawImage(logo, 0, 0,logo_width, logo_height, left, 100, imW, imH);
+    logw = Math.floor((logo_width/logo_height)*imH);
+    leftl = (window.innerWidth - logw)/2;
+    topl = (window.innerHeight - imH)/2;
+    context.drawImage(logo, 0, 0,logo_width, logo_height, leftl, topl, logw, imH);
   }
 
 

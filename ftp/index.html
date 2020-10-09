@@ -104,10 +104,11 @@ image.onload = function() {
   }
 
   function bill_logo(){
-    logw = Math.floor((logo_width/logo_height)*imH);
+    logw = Math.floor(.8*window.innerWidth);
+    logh = Math.floor((logo_height/logo_width)*logw);
     leftl = (window.innerWidth - logw)/2;
     topl = (window.innerHeight - imH)/2;
-    context.drawImage(logo, 0, 0,logo_width, logo_height, leftl, topl, logw, imH);
+    context.drawImage(logo, 0, 0,logo_width, logo_height, leftl, topl, logw, logh);
   }
 
 

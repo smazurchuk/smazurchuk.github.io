@@ -51,8 +51,10 @@ Two dominant frequencies that appear are **344 Hz** and **414.5 Hz**. We can now
 
 Using an estimated speed of sound (using the barometric pressure and temperature), we can plug and chug:
 
-$$ c = 1123.32 \text{ft/s} $$
-$$ \lamda = \frac{c}{\omega} $$
+$$ c = 1123.32 \text{ ft/s} $$
+
+$$ \lambbda = \frac{c}{\omega} $$
+
 $$ \lambda \req .0402 \text{inches}$$
 
 We can see that the resonant frequency has a pretty small associated wavelength. We might hope that this frequency is a *harmonic* of the fundamental. In this case, since the shower has a rectangular shape, we might expect two harmonic frequencies: one that corresponds to the length, and one that corresponds to the width. 

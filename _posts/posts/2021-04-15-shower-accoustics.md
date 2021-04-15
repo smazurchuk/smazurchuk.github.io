@@ -53,9 +53,9 @@ Using an estimated speed of sound (using the barometric pressure and temperature
 
 $$ c = 1123.32 \text{ ft/s} $$
 
-$$ \lambbda = \frac{c}{\omega} $$
+$$ \lambda = \frac{c}{\omega} $$
 
-$$ \lambda \req .0402 \text{inches}$$
+$$ \lambda \approx .0402 \text{ in}$$
 
 We can see that the resonant frequency has a pretty small associated wavelength. We might hope that this frequency is a *harmonic* of the fundamental. In this case, since the shower has a rectangular shape, we might expect two harmonic frequencies: one that corresponds to the length, and one that corresponds to the width. 
 

@@ -8,7 +8,7 @@ Naively, I went about exploring this.
 
 ## Generating the Sweep
 
-The first step was to create an audio file where all the frequencies are swept through in at a constant speed at a constant intensity. I did this in matlabb. My version of matlab (2015a) has a built-in function called [`chirp`](https://www.mathworks.com/help/signal/ref/chirp.html) that generates a swept-frequency cosine signal.
+The first step was to create an audio file where all the frequencies are swept through in at a constant speed at a constant intensity. I did this in matlab. My version of matlab (2015a) has a built-in function called [`chirp`](https://www.mathworks.com/help/signal/ref/chirp.html) that generates a swept-frequency cosine signal.
 
 I decided to go through the frequenecy range [0, 1000] Hz, use the standard sampling rate of 44.1 kHz, and have the sweep take 15 seconds. The full command was:
 

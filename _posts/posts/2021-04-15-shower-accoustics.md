@@ -82,9 +82,9 @@ Generates:
 
 Maybe??
 
-I will point out, I think that is actually unlikely to be what we think it is, but it was cool none the less to see that our frequency response to the sweep was far from flat!
+I will point out, I think that is actually unlikely to be what we think it is. It seems likely to me that the result might actually reflect something about the microphone in my phone or the bluetooth speaker. Either way, it was cool none the less to see that our frequency response to the sweep was far from flat!
 
-## Verifying Approach
+## Validating Approach
 
 In order to see if the results are sensible, I thought two experiments would be:
 

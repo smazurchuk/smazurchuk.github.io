@@ -43,6 +43,7 @@ theme: minima
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+  - jemoji
 
 exclude:
   - /assets/reveal.js/css/theme/README.md

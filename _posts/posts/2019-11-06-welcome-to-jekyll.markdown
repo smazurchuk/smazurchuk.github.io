@@ -4,6 +4,20 @@ title:  "Welcome to Jekyll!"
 date:   2019-11-06 16:50:35 -0600
 categories: jekyll update
 ---
+## General Notes
+
+This page is just a page for me to keep little things to reference. It will not be applicable to anyone esle, it's just a convience page for me :)
+
+# MATLAB Connectivity Matrices
+
+The data going into the command `cifti_write_from_template` should be [379,k] where `k` is the number of maps (379 is the number of parcels). Further, given a connectivity matrix that is [379,379], the proper way to reduce this is by
+
+```matlab
+nData = [sum(hyper_mask,1); sum(hypo_mask,1)]';
+cifti_write_from_template(g,nData,'connMask2.pscalar.nii');
+```
+
+
 # Note
 I'm just keeping the default page made by jekyll for convience
 

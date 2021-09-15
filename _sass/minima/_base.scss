@@ -77,7 +77,6 @@ figcaption {
 }
 
 
-
 /**
  * Lists
  */
@@ -257,6 +256,10 @@ table {
   td {
     border: 1px solid $grey-color-light;
   }
+}
+
+.emoji{
+  display: inline-block;
 }
 
 /* =============================================================================

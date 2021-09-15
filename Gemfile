@@ -19,7 +19,7 @@ gem "github-pages", group: :jekyll_plugins
 #  gem "jekyll-feed", "~> 0.12"
 # end
 gem 'jekyll-seo-tag'
-
+gem 'jemoji'
 
 
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem

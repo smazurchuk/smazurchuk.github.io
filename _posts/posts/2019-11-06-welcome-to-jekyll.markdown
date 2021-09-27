@@ -17,6 +17,11 @@ nData = [sum(hyper_mask,1); sum(hypo_mask,1)]';
 cifti_write_from_template(g,nData,'connMask2.pscalar.nii');
 ```
 
+# Launch novnc
+
+```bash
+sudo novnc --listen 1234 --vnc localhost:5901
+```
 
 # Note
 I'm just keeping the default page made by jekyll for convience

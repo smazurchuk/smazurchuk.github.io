@@ -24,5 +24,4 @@ A simple thought experiment that seems intuitvly obvious to me is the following:
 
 > If someone was born congenitally blind (e.g. no eyes), could you explain to this person what the subjective experience of seeing *red* is?
 
-Some people might try to play devils advocate, but I think that largely it feels that you could not. This has long been recognized in a similar question in that we might both point to an object and call it a particular color, but it seems that there would be no way for us to be sure that we actually experience the same color. 
-
+Some people might try to play devils advocate, but I think that largely it feels that you could not. This has long been recognized in a similar question in that we might both point to an object and call it a particular color, but it seems that there would be no way for us to be sure that we actually experience the same color. In this case, a generalization is recognizing that every phenomoenolgical experience (the taste of something, the sound of something, the texture of something) could never be conveyed by words alone. It *requires* a first-hand experience of the experience. 

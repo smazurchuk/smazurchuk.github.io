@@ -12,13 +12,25 @@ Unfortunettely, I will not give too strict a motivation for most of the points h
 
 ## Re-enforcement Learning
 
-It's my personall feeling that the field of RL learning will have the most insight to give in an attempt to formalize intuition. The basic formulation is of an agent interacting with an environment.
+It's my personall feeling that the field of RL learning will have the most insight to give in an attempt to formalize intuition. The basic formulation is of an agent (or neural network) interacting with an environment.
 
-[img](rl_image.svg)
+![RL_basis](/assets/RL_basis.svg)
 
 In the case of a simple agent that is a feed-foward neural network, the network is approximating what is called a "q" function. To make these things concrete, we can look at a computer agent that is trained to play the atari game pong. We will use a simple convolutional network following the design of AlexNet
 
-[AlexNet](alexNet.svg)
+![Q_learning](/assets/q_learning.svg)
+
+The actual game is slightle more complicated, but follows the same basis. It is called coin-runner
+<center>
+<video style="width: 80%;" controls>
+        <source src="/assets/coinrun.mp4" type="video/mp4">
+        Your browser doesn't support videos
+</video>
+</center>
+<p align="center"><em> An example of the detected action "blowing out candles" </em></p>
+
+
+![Network Design](/assets/networkDesign.svg)
 
 Here, a given set of observations is mapped to an output space that can either be `Move Left` `Move Right` or `No Move`. Skipping the details of how such a model is trained, we can imagine that we update weights in the neural network until it plays the game quite well. That is excatly what was done in this paper!
 
@@ -34,7 +46,7 @@ I **implore** you to play around with this interface below. It is taken from the
 
 My feeling is that this interface (and their analysis) *emphatically* answers the question that something like semantic conepts are represented in the network. 
 
-<iframe src="https://smazurchuk.github.io/assets/static_pages/understanding_rl/" title="RL Visualization" width="1000" height="1000"></iframe>
+<iframe src="/assets/static_pages/understanding_rl/" title="RL Visualization" width="1000" height="1000" scrolling="no"></iframe>
 
 
 ### Understanding meaning Attribution

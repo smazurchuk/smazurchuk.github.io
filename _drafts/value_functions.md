@@ -34,6 +34,9 @@ I **implore** you to play around with this interface below. It is taken from the
 
 My feeling is that this interface (and their analysis) *emphatically* answers the question that something like semantic conepts are represented in the network. 
 
+<iframe src="https://smazurchuk.github.io/assets/static_pages/understanding_rl/" title="RL Visualization" width="1000" height="1000"></iframe>
+
+
 ### Understanding meaning Attribution
 
 This is a superficial covering of the result 

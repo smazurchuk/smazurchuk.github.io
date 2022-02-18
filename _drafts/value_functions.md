@@ -22,13 +22,12 @@ In the case of a simple agent that is a feed-foward neural network, the network 
 
 The actual game is slightle more complicated, but follows the same basis. It is called coin-runner
 <center>
-<video style="width: 80%;" controls>
+<video style="width: 80%;" controls muted="">
         <source src="/assets/coinrun.mp4" type="video/mp4">
         Your browser doesn't support videos
 </video>
 </center>
-<p align="center"><em> An example of the detected action "blowing out candles" </em></p>
-
+<p align="center"><em> Trained model playing CoinRun. Left: full resolution. Right: 64x64 RGB observations given to the model.</em></p>
 
 ![Network Design](/assets/networkDesign.svg)
 

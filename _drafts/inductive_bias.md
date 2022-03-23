@@ -42,3 +42,7 @@ For reference, there is this recent paper by Anirudh Goyal and Yoshua Bengio all
 For me, there was insight when I realized that anytime we are fitting a model to data, there are *always* inductive biases. Where these biases come to bear are not so important when our model is explaining training and testing data that are coming from the same overall distribution. 
 
 A recent push in machine learning has been to focus
+
+# Random Thought
+
+Have you ever thought about how long you would have to simulate a box of air before it would start forming some complex interactions? I'm not sure how much it crosses your mind, but I often think that the best way to find out the necessary pre-requisites for life is simulation. 

@@ -19,7 +19,7 @@ Therefore, using a random seed of 8739 (made up) and choosing from 20 participan
 
 ```python
 import numpy as np
-rng    = np.random.default_rng(8739) # Define random number generator with seed
+rng    = np.random.default_rng(31032022) # Define random number generator with seed
 n      = 20 # Choose from list [0-19] (inclusive)
 choice = rng.choice(n)
 print('The number chosen is: '+ str(choice+1))  # I added 1 so that choice 1-20

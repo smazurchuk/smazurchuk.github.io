@@ -6,7 +6,7 @@ This post is mainly to serve as a *very* light introduction to choosing a random
 
 # Selecting a number from 1 to *n*
 
-The only two things we have to define are"
+The only two things we have to define are:
  
  * The number **n** 
     * **Note**: Python is zero indexed. This means that that to pick a number from 1 to 5 (including both 1 and 5), we should choose *n* to be 5, but remember that python is really choosing from the list [0,1,2,3,4]. This means a result of 0 should be mapped to the first choice (i.e. 1) and a result of 4 mapped to 5.
@@ -15,7 +15,7 @@ The only two things we have to define are"
 
 We will use the [`choice`](https://numpy.org/doc/stable/reference/random/generated/numpy.random.Generator.choice.html) function in numpy to make our selection. Click the link to read the function documentation. 
 
-Therefore, using a random seed of 8739 (made up) and choosing from 20 participants, our code would be
+Therefore, using a random seed of 31032022 (made up) and choosing from 20 participants, our code would be
 
 ```python
 import numpy as np

@@ -8,6 +8,15 @@ categories: jekyll update
 
 This page is just a page for me to keep little things to reference. It will not be applicable to anyone esle, it's just a convience page for me :)
 
+# Convert pngs to movie
+
+This is the command that produces decently high quality and small outputs :) 
+
+```
+ffmpeg -start_number 53 -framerate 2 -i frames/movie000%03d.png -vcodec libx264 -crf 25 output.mp4
+```
+
+
 # MATLAB Connectivity Matrices
 
 The data going into the command `cifti_write_from_template` should be [379,k] where `k` is the number of maps (379 is the number of parcels). Further, given a connectivity matrix that is [379,379], the proper way to reduce this is by

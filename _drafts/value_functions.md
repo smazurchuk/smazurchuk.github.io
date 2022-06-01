@@ -1,14 +1,19 @@
 # On Concepts and Meaning
 
-It's difficult to write out an ideas abstract concepts that many of us have our own intuitions and pre-conceptions on. Even more difficult still to try to call upon people's intuitions to motivate a formulaziation of something abstract. However, even given this difficulty, I thank you for your understanding and reading of the text that follows
+It's difficult to write out an ideas abstract concepts that many of us have our own intuitions and pre-conceptions on. Even more difficult still to try to call upon people's intuitions to motivate a formulaziation of something abstract. However, even given this difficulty, I thank you for your understanding and I hope forgiving reading of the text that follows
 
 ## Problem Statement
 
-The general task I am attempting to undertake is to define more precisely (i.e. formally) what *semantic meaning* is. This undertaking of what is surely an absurd task is difficult to do withou knowing a readers personall background. Perhaps you have thought extensivly about perception, phenomenology, and the representation of concepts in the brain, but perhaps you have not. Given the (potential) variety of readers, I will try to strike a middle ground of explaining some background, but ommitting the vast majority background/motivation due to the desire to not write a text book. However, due to the abstractness of the problem and the large amount of jargon that has been developed over the past few thousand years (primarily by philosiphers), I will write periodically use some jargon in-case it is clarifying for some. 
+The general task I am attempting to undertake is to define more precisely (i.e. formally) what *semantic meaning* is. This undertaking of what is surely an absurd task is difficult to do without knowing a readers personal background. Perhaps you have thought extensivly about perception, phenomenology, and the representation of concepts in the brain, but perhaps you have not. Given the (potential) variety of readers, I will try to strike a middle ground of explaining some background, but ommitting the vast majority background/motivation due to the desire not get too bogged down before even starting. However, due to the abstractness of the problem and the large amount of jargon that has been developed over the past few thousand years (primarily by philosiphers), I will write periodically use some jargon in-case it is clarifying for some. 
 
 ## Problem Motivation
 
-Unfortunettely, I will not give too strict a motivation for most of the points here, but hopefully, at least from the surface of it, they seem intuitvly correct. Firstly, what is a *concept*? How can we define what, for example, a "ball" is? Hopefully after some thought, this task strikes you as very difficult to do; at least difficult to do in any formal way that doesn't resort to recursive definitations that leave some ill-defined base-case or an appeal to platonic ideals. 
+Unfortunettely, I will not give too strict a motivation for most of the points here, but hopefully, at least from the surface of it, they seem intuitvly correct. Firstly, what is a *concept*? How can we define what, for example, a "ball" is? In all honestly, I think it is great to pause here and actually try defining what a ball is. Hopefully after some thought, this task strikes you as very difficult to do; at least difficult to do in any formal way that doesn't resort to recursive definitations that leave some ill-defined base-case (e.g. balls are round) or an appeal to platonic ideals.
+
+It might seem that since for all practical purposes, we normally can agree on what a ball is, it isn't too important to really work on this problem. However, I would argue that since it certainly appears that concepts are the building block of cognition, that actually getting a better understanding of what a concept is is critical for understanding how cognition is actually implemented in the physical hardware of the brain. As to why it is an interesting question to understand how the mind arises the physical substrate of neurons, I'd be deeply curious what sorts of questions your mind considers. 
+
+
+
 
 ## Re-enforcement Learning
 

@@ -6,14 +6,14 @@ In performing this literature review, I came across two papers that are remarkab
 
 **Paper 1**
 
-<img src="/assets/functionalHomotopy.png" width="800">
+<img src="/assets/functionalHomotopy.png" width="500">
 
 > Methods: [...] were included to collect the fMRI data and perform the voxel-mirrored homotopic connectivity (VMHC) and FC analyses
 
 * 36 TLE patients, 37 healthy controls (HC)
 
 **Paper 2**
-<img src="/assets/voxelMirroredHomotopy.png" width="800">
+<img src="/assets/voxelMirroredHomotopy.png" width="500">
  
 > Methods: [...] Then VHMC analyses of bilateral brain regions were conducted
 
